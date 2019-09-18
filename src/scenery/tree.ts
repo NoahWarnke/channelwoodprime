@@ -15,6 +15,7 @@ export class Tree {
     trunk.addComponent(trunkShape);
     let trunkColor = new Material();
     trunkColor.albedoColor = new Color3(0.4, 0.3, 0);
+    trunkColor.roughness = 1.0;
     trunk.addComponent(trunkColor);
     trunk.setParent(tree);
     
@@ -26,6 +27,7 @@ export class Tree {
     }));
     let branchesColor = new Material();
     branchesColor.albedoColor = new Color3(0, 0.4, 0.1);
+    branchesColor.roughness = 1.0;
     branches.addComponent(branchesColor);
     branches.setParent(tree);
     
