@@ -5,7 +5,8 @@ export class Tree {
     
     let tree = new Entity();
     tree.addComponent(transform);
-    
+    tree.addComponent(new GLTFShape('models/trees/CPtree_stairs_v1.glb'));
+    /*
     let trunk = new Entity();
     trunk.addComponent(new Transform({
       scale: new Vector3(0.5, 1, 0.5)
@@ -30,6 +31,7 @@ export class Tree {
     branchesColor.roughness = 1.0;
     branches.addComponent(branchesColor);
     branches.setParent(tree);
+    */
     
     engine.addEntity(tree);
   }
