@@ -1,0 +1,195 @@
+import UIresources from "./UIresources";
+
+class SingleUI {
+    uiImage: UIImage
+    parent: any
+    textureImg: Texture
+    sourceLeft: number
+    sourceTop: number
+    sourceWidth: number
+    sourceHeight: number
+    width: number
+    height: number
+    positionX: number
+    positionY: number
+
+    constructor(
+        parent: any,
+        textureImg: Texture,
+        sourceLeft: number,
+        sourceTop: number,
+        sourceWidth: number,
+        sourceHeight: number,
+        width: number,
+        height: number,
+        positionX: number,
+		positionY: number
+    ) {
+        this.parent = parent
+        this.textureImg = textureImg
+        this.uiImage = new UIImage(parent, textureImg)
+        this.uiImage.name = ''
+        this.uiImage.hAlign = 'left'
+        this.uiImage.vAlign = 'top'
+        this.uiImage.sourceLeft = sourceLeft
+        this.uiImage.sourceTop = sourceTop
+        this.uiImage.sourceWidth = sourceWidth
+        this.uiImage.sourceHeight = sourceHeight
+        this.uiImage.width = width
+        this.uiImage.height = height
+        this.uiImage.positionX = positionX
+        this.uiImage.positionY = positionY
+
+        this.uiImage.isPointerBlocker = true
+        this.uiImage.visible = false
+
+        this.sourceLeft = sourceLeft
+        this.sourceTop = sourceTop
+        this.sourceWidth = sourceWidth
+        this.sourceHeight = sourceHeight
+        this.width = width
+        this.height = height
+        this.positionX = positionX
+        this.positionY = positionY
+        this.uiImage.visible = true
+    }
+    show() {
+        this.parent.visible = true
+    }
+    hide() {
+        this.parent.visible = false
+    }
+    changeImage(texture: Texture) {
+        this.uiImage.source = texture
+    }
+    changePosAndScale(pX: number, pY: number, scale: number) {
+        this.uiImage.positionX = pX
+        this.uiImage.positionY = pY
+        this.uiImage.width = this.width * scale
+        this.uiImage.height = this.height * scale
+    }
+    toDefaultPos() {
+        this.uiImage.positionX = this.positionX
+        this.uiImage.positionY = this.positionY
+        this.uiImage.width = this.width
+        this.uiImage.height = this.height
+    }
+}
+
+class PageUI extends SingleUI {
+    isLock: boolean = true
+    constructor(
+        parent: any,
+        textureImg: Texture,
+        sourceLeft: number,
+        sourceTop: number,
+        sourceWidth: number,
+        sourceHeight: number,
+        width: number,
+        height: number,
+        positionX: number,
+        positionY: number
+    ) {
+        super(parent, textureImg, sourceLeft, sourceTop, sourceWidth, sourceHeight,
+            width, height, positionX, positionY)
+        this.uiImage.visible = false
+    }
+    unlockPage() {
+        this.isLock = false
+    }
+    show() {
+        if (!this.isLock) {
+            this.uiImage.visible = true
+            this.parent.visible = true
+        }
+    }
+    hide() {
+        this.uiImage.visible = false
+        this.parent.visible = false
+    }
+}
+
+//-----------------CREATE UI-------------------//
+
+export const canvas = new UICanvas()
+canvas.visible = true
+
+export const rectPage = new UIContainerRect(canvas) //for individual pages
+createRect(rectPage, 1)
+
+export const rectJournal = new UIContainerRect(canvas) //for journal summary
+createRect(rectJournal, 1)
+
+export const rectIcon = new UIContainerRect(canvas) //for icon in the bottom
+createRect(rectIcon, 1)
+rectIcon.visible = true
+
+
+//create collection of UIImage individual page
+const pages: PageUI[] = []
+for (let i = 0; i < 10; i++) {
+    pages.push(
+        new PageUI(rectPage, UIresources.texture.pageTexture[i],
+            0, 0, 512, 512, 512, 625, 450, 0)
+    )
+}
+const journalPage = {
+    pages: pages,
+    closeBtn: new SingleUI(rectPage, UIresources.texture.iconClose, 0, 0, 64, 64, 48, 48, 350, -10)
+}
+
+//create background for journal
+const journalBackground = new SingleUI(rectJournal, UIresources.texture.journalBackground, 0, 0,
+    512, 512, 950, 600, 425, 0)
+
+//create thumbnail pages for journal
+let xOffset: number = 507
+let yOffset: number = -100
+let scale: number = 0.28
+const journalThumbnail: SingleUI[] = []
+for (let i = 0; i < 10; i += 1) {
+    journalThumbnail.push(
+        new SingleUI(rectJournal, UIresources.texture.journalBlocker,
+            0, 0, 512, 512,
+            512 * scale,
+            625 * scale,
+            ((i) % 5) * 155 + xOffset,
+            (Math.floor((i) / 5)) * -205 + yOffset)
+    )
+    //journalThumbnail[i].show()
+}
+const JournalSummary = {
+    parent: rectJournal,
+    background: journalBackground,
+    journalThumbnail: journalThumbnail,
+    closeBtn: new SingleUI(rectJournal, UIresources.texture.iconClose, 0, 0, 64, 64, 48, 48, 350, -10)
+}
+
+let journalSummaryBtn = new SingleUI(rectIcon, UIresources.texture.iconJournalSummary, 0, 0, 64, 64, 64, 64, 450, -650)
+let audioBtnOn = new SingleUI(rectIcon, UIresources.texture.iconAudioOn, 0, 0, 64, 64, 64, 64, 600, -650)
+let audioBtnOff = new SingleUI(rectIcon, UIresources.texture.iconAudioOff, 0, 0, 64, 64, 64, 64, 600, -650)
+audioBtnOff.uiImage.visible = false
+audioBtnOn.uiImage.visible = true
+
+export default {
+    UIObjects: {
+        journalPage: journalPage,
+        journalSummary: JournalSummary,
+        Icon: {
+            journalSummaryBtn: journalSummaryBtn,
+            audioBtnOff: audioBtnOff,
+            audioBtnOn: audioBtnOn
+        }
+    }
+}
+
+function createRect(rect, opac){
+    rect.adaptHeight = true
+    rect.adaptWidth = true
+    rect.hAlign = 'left'
+    rect.vAlign = 'top'
+    rect.positionX = 0
+    rect.opacity = opac
+    rect.visible = false
+    return rect
+}
