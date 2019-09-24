@@ -1,16 +1,20 @@
+import {Ground} from 'scenery/ground';
 import {Tree} from 'scenery/tree';
 import {Treehouse} from 'scenery/treehouse';
 import {Bridge} from 'scenery/bridge';
 import {Manager} from 'stateengine/manager';
 
+let ground = new Ground();
+
 let house0 = new Treehouse(
   new Transform({
     position: new Vector3(24, 1, 24)
   }),
-  [0, 1, 2, 4, 4, 3]
+  [0, 0, 4, 0, 0, 0]
 );
 
-let test = new Bridge(new Vector3(24, 1, 20.536), new Vector3(24, 10, 0.3), 0);
+let islandBridgePos = new Vector3(65, 1.35, 32);
+let test = new Bridge(/*new Vector3(24, 1, 20.536)*/ house0.getSocketPos(2), new Vector3(65, 1.35, 32), 0);
 /*
 for (var i = 0; i < 20; i++) {
   let test = new Bridge(

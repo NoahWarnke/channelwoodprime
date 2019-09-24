@@ -3,7 +3,7 @@ export class Bridge {
   
   constructor(startPoint: Vector3, endPoint: Vector3, pipeStatus: number) {
     
-    let model = new GLTFShape('models/bridge.glb');
+    let model = new GLTFShape('models/bridge_no_railings.glb');
     
     let offset = endPoint.subtract(startPoint);
     let length = offset.length();
@@ -14,9 +14,11 @@ export class Bridge {
     }
     
     let segmentLength = length / numSegments;
-    let segmentOffset = offset.normalize().scale(segmentLength);
+    let segmentOffset = offset.clone().normalize().scale(segmentLength);
     
+    // Bridge segments.
     let pos = new Vector3(startPoint.x, startPoint.y, startPoint.z);
+    pos = pos.add(segmentOffset.scale(0.5));
     for (var i = 0; i < numSegments; i++) {
       let segment = new Entity();
       let segTransf = new Transform();
@@ -28,5 +30,34 @@ export class Bridge {
       segment.addComponent(model);
       engine.addEntity(segment);
     }
+    
+    // End modules.
+    let endModuleShape = new GLTFShape('models/bridgeEndModule.glb');
+    let endModule0 = new Entity();
+    endModule0.addComponent(endModuleShape);
+    endModule0.addComponent(new Transform({
+      position: startPoint,
+      rotation: Quaternion.Euler(0, Math.atan2(offset.x, offset.z) * 180 / Math.PI, 0)
+    }));
+    engine.addEntity(endModule0);
+    
+    let endModule1 = new Entity();
+    endModule1.addComponent(endModuleShape);
+    endModule1.addComponent(new Transform({
+      position: endPoint,
+      rotation: Quaternion.Euler(0, Math.atan2(offset.x, offset.z) * 180 / Math.PI, 0)
+    }));
+    engine.addEntity(endModule1);
+    
+    // Catenary ropes
+    let catenary = new Entity();
+    catenary.addComponent(new GLTFShape('models/catenaryRopes.glb'));
+    let catTransf = new Transform({
+      position: startPoint.add(offset.clone().scale(0.5)),
+      scale: new Vector3(1, 1, length / 10)
+    });
+    catTransf.lookAt(endPoint);
+    catenary.addComponent(catTransf);
+    engine.addEntity(catenary);
   }
 }
