@@ -2,7 +2,14 @@ import {Ground} from 'scenery/ground';
 import {Tree} from 'scenery/tree';
 import {Treehouse} from 'scenery/treehouse';
 import {Bridge} from 'scenery/bridge';
+import {Windmill} from 'scenery/windmill'
 import {Manager} from 'stateengine/manager';
+
+// --- TEMP ---
+let windmill = new Windmill(
+  new Transform({ position: new Vector3(10, 0, 10)}), // Position treehouse
+  45 // Rotation speed (degrees / second)
+);
 
 let ground = new Ground();
 
