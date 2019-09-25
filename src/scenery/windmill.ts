@@ -15,7 +15,5 @@ export class Windmill {
 
     animator.addClip(bladeRotateClip);
     engine.addEntity(windmill);
-
-    
   }
 }
