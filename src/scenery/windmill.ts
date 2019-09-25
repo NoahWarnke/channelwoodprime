@@ -9,6 +9,7 @@ export class Windmill {
     windmill.addComponent(animator);
 
     const bladeRotateClip = new AnimationState("bladeRotate");
+    bladeRotateClip.speed = 0.2;
     bladeRotateClip.play();
     bladeRotateClip.looping = true;
 
