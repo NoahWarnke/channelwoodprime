@@ -7,8 +7,7 @@ import {Manager} from 'stateengine/manager';
 
 // --- TEMP ---
 let windmill = new Windmill(
-  new Transform({ position: new Vector3(10, 0, 10)}), // Position treehouse
-  45 // Rotation speed (degrees / second)
+  new Transform({ position: new Vector3(10, 0, 10)}), // Position windmill
 );
 
 let ground = new Ground();

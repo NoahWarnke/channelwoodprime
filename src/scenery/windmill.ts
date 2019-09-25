@@ -1,20 +1,20 @@
-import utils from "../../node_modules/decentraland-ecs-utils/index"
-
 export class Windmill {
-  constructor(transform: Transform, rotateSpeed: number) {
+  constructor(transform: Transform) {
 
-    let windmillBase = new Entity();
-    windmillBase.addComponent(new GLTFShape('models/windmillBase.glb'));
-    windmillBase.addComponent(transform);
-    engine.addEntity(windmillBase);
+    let windmill = new Entity();
+    windmill.addComponent(new GLTFShape('models/windmill.glb'));
+    windmill.addComponent(transform);
 
-    let windmillBlades = new Entity();
-    windmillBlades.addComponent(new GLTFShape('models/windmillBlades.glb'));
-    windmillBlades.setParent(windmillBase);
-    windmillBlades.addComponent(new Transform({
-      position: new Vector3(0, 16.75, 0)
-    }))
+    let animator = new Animator();
+    windmill.addComponent(animator);
 
-    windmillBlades.addComponent(new utils.KeepRotatingComponent(Quaternion.Euler(0, 0, rotateSpeed)))
+    const bladeRotateClip = new AnimationState("bladeRotate");
+    bladeRotateClip.play();
+    bladeRotateClip.looping = true;
+
+    animator.addClip(bladeRotateClip);
+    engine.addEntity(windmill);
+
+    
   }
 }
