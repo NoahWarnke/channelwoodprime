@@ -15,5 +15,7 @@ export class Windmill {
 
     animator.addClip(bladeRotateClip);
     engine.addEntity(windmill);
+    
+    // Create a pipe going up from the water, into the pump, and then down to the first bridge.
   }
 }
