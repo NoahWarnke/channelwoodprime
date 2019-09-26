@@ -4,6 +4,7 @@
 - _handle-squeak.mp3_ (https://freesound.org/people/lolamadeus/sounds/217174/)
 - _creek-a.mp3_ (https://freesound.org/people/Bini_trns/sounds/393998/)
 - _creek-b.mp3_ (https://freesound.org/people/Bini_trns/sounds/393998/)
+- _creek-c.mp3_ (https://freesound.org/people/Suz_Soundcreations/sounds/180543/)
 - _energy-a.mp3_ (https://freesound.org/people/Sclolex/sounds/260999/)
 - _energy-b.mp3_ (https://freesound.org/people/Sclolex/sounds/260999/)
 - _energy-c.mp3_ (https://freesound.org/people/be-steele/sounds/136306/)
