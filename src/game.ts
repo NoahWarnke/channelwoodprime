@@ -4,6 +4,7 @@ import {Treehouse} from 'scenery/treehouse';
 import {Bridge} from 'scenery/bridge';
 import {Windmill} from 'scenery/windmill'
 import {Manager} from 'stateengine/manager';
+import {UI} from 'moduleUI/ui';
 
 // Create our ground (heightmap and lake).
 let ground = new Ground();
@@ -198,3 +199,18 @@ for (let i = 0; i < treeLocations.length; i++) {
     houses['A'].house.getPos()
   ]);
 }
+
+
+//Create UI (journal pages)
+let ui = new UI([
+    new Vector3(16, 0.15, 8),
+    new Vector3(17, 0.15, 8),
+    new Vector3(18, 0.15, 8),
+    new Vector3(19, 0.15, 8),
+    new Vector3(20, 0.15, 8),
+    new Vector3(21, 0.15, 8),
+    new Vector3(22, 0.15, 8),
+    new Vector3(23, 0.15, 8),
+    new Vector3(24, 0.15, 8),
+    new Vector3(25, 0.15, 8),
+]);

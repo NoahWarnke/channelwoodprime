@@ -1,4 +1,4 @@
-import UIclasses, { rectJournal } from "./UIclasses"
+import UIclasses, { rectJournal } from "./UIobjects"
 import UIresources from "./UIresources";
 
 export const gameUI = (function () {
@@ -26,7 +26,7 @@ export const gameUI = (function () {
             UIclasses.UIObjects.journalPage.pages[i - 1].unlockPage()
             UIclasses.UIObjects.journalPage.pages[i - 1].show()
 
-            log("UNLOCK JOURNAL")
+            //log("UNLOCK JOURNAL")
             pageUIActive = true
             activePage = i
         },

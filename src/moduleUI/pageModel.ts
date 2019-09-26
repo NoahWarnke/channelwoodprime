@@ -20,9 +20,9 @@ class JournalPageModel {
         this.entity.addComponent(
             new OnPointerDown(e => {
                 let squareDis = camera.position.subtract(this.entity.getComponent(Transform).position).lengthSquared()
-                log(squareDis)
+                //log(squareDis)
                 if (squareDis < 16) {
-                    log("JOURNAL PAGE ", this.pageNumber, " UNLOCKED")
+                    //log("JOURNAL PAGE ", this.pageNumber, " UNLOCKED")
                     gameUI.unlockPage(this.pageNumber)
 
                     engine.removeEntity(this.entity)

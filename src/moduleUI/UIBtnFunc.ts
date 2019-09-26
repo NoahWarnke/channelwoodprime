@@ -1,33 +1,33 @@
-import UIclasses from "./UIclasses"
+import UIclasses from "./UIobjects"
 import { gameUI } from "./UIgroup"
 
 //closebutton for pages
 UIclasses.UIObjects.journalPage.closeBtn.uiImage.onClick = new OnClick(() => {
-    log("Close Button PAGE Clicked")
+    //log("Close Button PAGE Clicked")
     gameUI.hidePage()
 })
 
 //closebutton for journal summary
 UIclasses.UIObjects.journalSummary.closeBtn.uiImage.onClick = new OnClick(() => {
-    log("Close Button JOURNAL Clicked")
+    //log("Close Button JOURNAL Clicked")
     gameUI.hideJournalSummary()
 })
 
 //journal summary button
 UIclasses.UIObjects.Icon.journalSummaryBtn.uiImage.onClick = new OnClick(() => {
-    log("Journal Summary Button Clicked")
+    //log("Journal Summary Button Clicked")
     gameUI.showJournalSummary()
 })
 
 //audio button
 UIclasses.UIObjects.Icon.audioBtnOff.uiImage.onClick = new OnClick(() => {
-    log("audio set to ON")
+    //log("audio set to ON")
     UIclasses.UIObjects.Icon.audioBtnOn.uiImage.visible = true
     UIclasses.UIObjects.Icon.audioBtnOff.uiImage.visible = false
     gameUI.setAudioState(true)
 })
 UIclasses.UIObjects.Icon.audioBtnOn.uiImage.onClick = new OnClick(() => {
-    log("audio set to OFF")
+    //log("audio set to OFF")
     UIclasses.UIObjects.Icon.audioBtnOn.uiImage.visible = false
     UIclasses.UIObjects.Icon.audioBtnOff.uiImage.visible = true
     gameUI.setAudioState(false)
