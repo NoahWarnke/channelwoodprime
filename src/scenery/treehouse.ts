@@ -1,30 +1,44 @@
 
 export class Treehouse {
   
+  static pipeShapes: {[index: string]: GLTFShape} = {
+    full: new GLTFShape('models/pipes/pipe_edge_straight.glb'),       // full pipe
+    gap: new GLTFShape('models/pipes/pipe_edge_gap.glb'),             // gap with 1/4 both sides
+    shortl: new GLTFShape('models/pipes/pipe_edge_short_l.glb'),      // just 1/4 left pipe
+    shortr: new GLTFShape('models/pipes/pipe_edge_short_r.glb'),      // just 1/4 right pipe
+    medl: new GLTFShape('models/pipes/pipe_edge_med_r.glb'),          // just 3/4 left pipe
+    medr: new GLTFShape('models/pipes/pipe_edge_med_r.glb'),          // just 3/4 right pipe
+    valvel: new GLTFShape('models/pipes/pipe_edge_w_valve_a.glb'),// full pipe with left valve
+    valver: new GLTFShape('models/pipes/pipe_edge_w_valve_b.glb'),// full pipe with right valve
+  };
+  
   public centerPos: Vector3;
   
-  constructor(transform: Transform, railingLayout: number[]) {
+  constructor(transform: Transform, railingLayout: string[]) {
+    
+    // Holder for all the treehosue models.
     let root = new Entity();
     root.addComponent(transform);
     this.centerPos = transform.position;
     
+    // The actual house. TODO add some more shapes!
     let house = new Entity();
-    house.addComponent(new GLTFShape('models/treehouse.glb'));
+    house.addComponent(new GLTFShape('models/treehouses/treehouse.glb'));
+    house.addComponent(new Transform({
+      rotation:  Quaternion.Euler(0, 30, 0)
+    }));
     house.setParent(root);
     
     // Load the pipes
-    let pipeModels = [
-      new GLTFShape('models/pipe_edge_straight.glb'),
-      new GLTFShape('models/pipe_edge_gap.glb'),
-      new GLTFShape('models/pipe_edge_short_l.glb'),
-      new GLTFShape('models/pipe_edge_short_r.glb'),
-      new GLTFShape('models/pipe_edge_w_valve_a.glb'),
-    ]
     for (let i = 0; i < 6; i++) {
+      let pipeShape = Treehouse.pipeShapes[railingLayout[i]];
+      if (pipeShape === undefined) {
+        continue;
+      }
       let pipe = new Entity();
-      pipe.addComponent(pipeModels[railingLayout[i]]);
+      pipe.addComponent(pipeShape);
       pipe.addComponent(new Transform({
-        rotation: Quaternion.Euler(0, -i * 60 + 180, 0)
+        rotation: Quaternion.Euler(0, i * -60 + 150, 0)
       }));
       pipe.setParent(root);
     }
@@ -32,8 +46,56 @@ export class Treehouse {
     engine.addEntity(root);
   }
   
+  /**
+   * Get the angle of a socket with the given index (0-5)
+   */
+  public static getSocketAngle(num: number) {
+    num = Math.max(0, Math.min(num, 5)); // Check.
+    return num * Math.PI / 3;
+  }
+  
   public getSocketPos(num: number) {
-    num = (Math.max(0, Math.min(num, 5)) / 3 - 0.5) * Math.PI;
-    return this.centerPos.add(new Vector3(Math.cos(num), 0, Math.sin(num)).scale(3.464));
+    let angle = Treehouse.getSocketAngle(num);
+    return this.centerPos.add(new Vector3(Math.cos(angle), 0, Math.sin(angle)).scale(3.464));
+  }
+  
+  public getPos() {
+    return this.centerPos;
+  }
+  
+  public static reachFromPos(pos: Vector3, socket: number, distance: number, altitude: number): Vector3 {
+    let angle = Treehouse.getSocketAngle(socket);
+    
+    return new Vector3(
+      pos.x + Math.cos(angle) * distance,
+      altitude,
+      pos.z + Math.sin(angle) * distance
+    );
+  }
+  
+  public reach(socket: number, distance: number, altitude: number): Vector3 {
+    return Treehouse.reachFromPos(this.centerPos, socket, distance, altitude);
+  }
+  
+  public intersect(socket: number, otherHouse: Treehouse, otherSocket: number, altitude: number): Vector3 {
+    let a0 = this.centerPos; // x1, y1
+    let a1 = otherHouse.centerPos; // x3, y3
+    let b0 = this.getSocketPos(socket); // x2, y2
+    let b1 = otherHouse.getSocketPos(otherSocket); // x4, y4
+    
+    let det = (a0.x - b0.x) * (a1.z - b1.z) - (a0.z - b0.z) * (a1.x - b1.x);
+    
+    // Parallel.
+    if (det === 0) {
+      return undefined;
+    }
+    
+    let u = -((a0.x - b0.x) * (a0.z - a1.z) - (a0.z - b0.z) * (a0.x - a1.x)) / det;
+    
+    return new Vector3(
+      a1.x + u * (b1.x - a1.x),
+      altitude,
+      a1.z + u * (b1.z - a1.z)
+    );
   }
 }

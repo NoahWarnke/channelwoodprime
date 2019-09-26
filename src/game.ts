@@ -5,31 +5,35 @@ import {Bridge} from 'scenery/bridge';
 import {Windmill} from 'scenery/windmill'
 import {Manager} from 'stateengine/manager';
 
-// --- TEMP ---
-let windmill = new Windmill(
-  new Transform({ position: new Vector3(10, 0, 10)}), // Position windmill
-);
-
+// Create our ground (heightmap and lake).
 let ground = new Ground();
 
-let house0 = new Treehouse(
+// Create the windmill on the island.
+let windmill = new Windmill(
   new Transform({
-    position: new Vector3(24, 1, 24)
-  }),
-  [0, 0, 4, 0, 0, 0]
+    position: new Vector3(11, 4, 12),
+    rotation: Quaternion.Euler(0, 215, 0),
+    scale: new Vector3(0.7, 0.7, 0.7)
+  })
 );
 
-let islandBridgePos = new Vector3(65, 1.35, 32);
-let test = new Bridge(/*new Vector3(24, 1, 20.536)*/ house0.getSocketPos(2), new Vector3(65, 1.35, 32), 0);
-/*
-for (var i = 0; i < 20; i++) {
-  let test = new Bridge(
-    new Vector3(Math.random() * 72 + 4, Math.random() * 60, Math.random() * 40 + 4),
-    new Vector3(Math.random() * 72 + 4, Math.random() * 60, Math.random() * 40 + 4),
-    0
-  );
-}
-*/
+// The position on the island where the first bridge departs for the treetops.
+let islandBridgePos = new Vector3(14, 1.4, 17);
+
+let house0 = new Treehouse(
+  new Transform({position: Treehouse.reachFromPos(islandBridgePos, 1, 20, 15)}),
+  ['full', 'shortl', 'none', 'none', 'shortr', 'valver']
+);
+
+let bridge0 = new Bridge(islandBridgePos, house0.getSocketPos(4), 0);
+
+let house1 = new Treehouse(
+  new Transform({position: house0.reach(3, 15, 16)}),
+  ['none', 'none', 'none', 'none', 'none', 'none']
+);
+
+let bridge1 = new Bridge(house0.getSocketPos(3), house1.getSocketPos(0), 0);
+
 
 // Create our puzzles!
 let manager = new Manager();
@@ -45,5 +49,7 @@ for (let i = 0; i < treeLocations.length; i++) {
   let size = Math.random() * 20 + 60;
   let tree = new Tree(new Transform({
     position: treeLocations[i]
-  }));
+  }), [
+    house0.getPos()
+  ]);
 }

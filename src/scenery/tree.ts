@@ -1,11 +1,39 @@
 
 export class Tree {
-  constructor(transform: Transform) {
+  constructor(transform: Transform, treehousePositions: Vector3[]) {
     
+    let treeCenter = transform.position.clone();
+    treeCenter.y -= 36;
     
     let tree = new Entity();
     tree.addComponent(transform);
-    tree.addComponent(new GLTFShape('models/trees/CPtree_stairs_v1.glb'));
+    tree.addComponent(new GLTFShape('models/trees/CPtree_v1-alpha.glb'));
+    
+    for (var i = 0; i < treehousePositions.length; i++) {
+      
+      let offset = treehousePositions[i].subtract(treeCenter);
+      
+      let angle = Math.atan2(offset.z, offset.x);
+      log(angle);
+      
+      let upper = new Entity();
+      upper.addComponent(new GLTFShape('models/trees/upperarm1.glb'));
+      upper.addComponent(new Transform({
+        position: new Vector3(0, i * 5 - 30, 0),
+        rotation: Quaternion.Euler(0, angle, 0)
+      }));
+      upper.setParent(tree);
+      
+      let fore = new Entity();
+      fore.addComponent(new GLTFShape('models/trees/forearm1.glb'));
+      fore.addComponent(new Transform({
+        position: new Vector3(Math.cos(angle / 180 * Math.PI) * 10, i * 5 - 30, Math.sin(angle / 180 * Math.PI) * 10),
+        rotation: Quaternion.Euler(0, angle, 0)
+      }));
+      fore.setParent(tree);
+    }
+    
+    
     /*
     let trunk = new Entity();
     trunk.addComponent(new Transform({

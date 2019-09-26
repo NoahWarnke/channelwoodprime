@@ -3,7 +3,7 @@ export class Bridge {
   
   constructor(startPoint: Vector3, endPoint: Vector3, pipeStatus: number) {
     
-    let model = new GLTFShape('models/bridge_no_railings.glb');
+    let model = new GLTFShape('models/bridges/bridge_no_railings.glb');
     
     let offset = endPoint.subtract(startPoint);
     let length = offset.length();
@@ -32,7 +32,7 @@ export class Bridge {
     }
     
     // End modules.
-    let endModuleShape = new GLTFShape('models/bridgeEndModule.glb');
+    let endModuleShape = new GLTFShape('models/bridges/bridgeEndModule.glb');
     let endModule0 = new Entity();
     endModule0.addComponent(endModuleShape);
     endModule0.addComponent(new Transform({
@@ -51,7 +51,7 @@ export class Bridge {
     
     // Catenary ropes
     let catenary = new Entity();
-    catenary.addComponent(new GLTFShape('models/catenaryRopes.glb'));
+    catenary.addComponent(new GLTFShape('models/bridges/catenaryRopes.glb'));
     let catTransf = new Transform({
       position: startPoint.add(offset.clone().scale(0.5)),
       scale: new Vector3(1, 1, length / 10)
