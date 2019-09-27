@@ -53,10 +53,10 @@ export class Bridge {
     let catenary = new Entity();
     catenary.addComponent(new GLTFShape('models/bridges/catenaryRopes.glb'));
     let catTransf = new Transform({
-      position: startPoint.add(offset.clone().scale(0.5)),
+      position: startPoint.add(offset.clone().scale(0.5)).add(new Vector3(0, 1.465, 0)),
       scale: new Vector3(1, 1, length / 10)
     });
-    catTransf.lookAt(endPoint);
+    catTransf.lookAt(endPoint.clone().add(new Vector3(0, 1.465, 0)));
     catenary.addComponent(catTransf);
     engine.addEntity(catenary);
   }
