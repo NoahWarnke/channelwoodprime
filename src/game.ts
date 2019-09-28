@@ -261,7 +261,7 @@ for (let i = 0; i < treeLocations.length; i++) {
     new Transform({
     position: treeLocations[i]
     }), [
-      houses['A'].house.getPos()
+      houses.A.house.getPos()
     ]
   );
 }
@@ -290,13 +290,13 @@ for (let i = 0; i < humanoidTreeLocations.length; i++) {
 //Create UI (journal pages)
 let ui = new UI([
     new Vector3(11.4, 4.6, 12.05),
-    new Vector3(17, 0.15, 8),
-    new Vector3(18, 0.15, 8),
-    new Vector3(19, 0.15, 8),
-    new Vector3(20, 0.15, 8),
-    new Vector3(21, 0.15, 8),
-    new Vector3(22, 0.15, 8),
-    new Vector3(23, 0.15, 8),
-    new Vector3(24, 0.15, 8),
-    new Vector3(25, 0.15, 8),
+    houses.A.house.getPos(),
+    houses.B1.house.getPos(),
+    houses.C.house.getPos(),
+    houses.D0.house.getPos(),
+    houses.F.house.getPos(),
+    houses.H.house.getPos(),
+    houses.J.house.getPos(),
+    houses.M.house.getPos(),
+    houses.N.house.getPos()
 ]);
