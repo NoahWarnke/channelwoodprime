@@ -12,18 +12,28 @@ export class Treehouse {
     valver: new GLTFShape('models/pipes/pipe_edge_w_valve_b.glb'),// full pipe with right valve
   };
   
+  static railShapes: {[index: string] : GLTFShape} = {
+    full: new GLTFShape('models/treehouses/fenceLong.glb'),
+    gap: new GLTFShape('models/treehouses/fenceShort.glb')
+  };
+  
+  static houseShapes: {[index: string] : GLTFShape} = {
+    house: new GLTFShape('models/treehouses/treehouse.glb'),
+    plat: new GLTFShape('models/treehouses/platformOnly.glb')
+  };
+  
   public centerPos: Vector3;
   
-  constructor(transform: Transform, railingLayout: string[]) {
+  constructor(transform: Transform, pipeLayout: string[], railLayout: string[], whichHouse: string) {
     
     // Holder for all the treehosue models.
     let root = new Entity();
     root.addComponent(transform);
     this.centerPos = transform.position;
     
-    // The actual house. TODO add some more shapes!
+    // The actual house.
     let house = new Entity();
-    house.addComponent(new GLTFShape('models/treehouses/treehouse.glb'));
+    house.addComponent(Treehouse.houseShapes[whichHouse]);
     house.addComponent(new Transform({
       rotation:  Quaternion.Euler(0, 30, 0)
     }));
@@ -31,15 +41,15 @@ export class Treehouse {
     
     // Treehand. Easier to attach it here than to the tree.
     let hand = new Entity();
-    hand.addComponent(new GLTFShape('models/trees/hand1.glb'));
+    hand.addComponent(new GLTFShape('models/trees/hand_v2.glb'));
     hand.addComponent(new Transform({
-      rotation:  Quaternion.Euler(0, 30, 0)
+      //rotation:  Quaternion.Euler(0, 30, 0)
     }));
     hand.setParent(root);
     
     // Load the pipes
     for (let i = 0; i < 6; i++) {
-      let pipeShape = Treehouse.pipeShapes[railingLayout[i]];
+      let pipeShape = Treehouse.pipeShapes[pipeLayout[i]];
       if (pipeShape === undefined) {
         continue;
       }
@@ -50,6 +60,22 @@ export class Treehouse {
       }));
       pipe.setParent(root);
     }
+    
+    // Load the railings.
+    for (let i = 0; i < 6; i++) {
+      let railShape = Treehouse.railShapes[railLayout[i]];
+      if (railShape === undefined) {
+        continue;
+      }
+      
+      let rail = new Entity();
+      rail.addComponent(railShape);
+      rail.addComponent(new Transform({
+        rotation: Quaternion.Euler(0, i * -60 + 90, 0)
+      }));
+      rail.setParent(root);
+    }
+    
     
     engine.addEntity(root);
   }

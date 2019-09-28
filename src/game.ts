@@ -1,5 +1,6 @@
 import {Ground} from 'scenery/ground';
 import {Tree} from 'scenery/tree';
+import {HumanoidTree} from 'scenery/humanoidtree';
 import {Treehouse} from 'scenery/treehouse';
 import {Bridge} from 'scenery/bridge';
 import {Windmill} from 'scenery/windmill'
@@ -25,35 +26,54 @@ let houses = {
     socket: 1,
     dist: 30,
     alt: 15,
-    pipes: ['none', 'none', 'none', 'shortr', 'valver', 'medl']
+    pipes: ['none', 'none', 'none', 'shortr', 'valver', 'medl'],
+    rails: ['gap', 'full', 'full', 'gap', 'gap', 'full'],
+    type: 'plat'
   },
-  'B': {
+  'B0': {
     from: 'A',
     socket: 3,
     dist: 15,
     alt: 18,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none']
+    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    rails: ['gap', 'full', 'full', 'full', 'full', 'gap'],
+    type: 'house'
+  },
+  'B1': {
+    from: 'A',
+    socket: 0,
+    dist: 16,
+    alt: 15,
+    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    rails: ['full', 'full', 'full', 'gap', 'full', 'full'],
+    type: 'house'
   },
   'C': {
-    from: 'B',
+    from: 'B0',
     socket: 5,
     dist: 14,
     alt: 23,
-    pipes: ['full', 'full', 'shortl', 'none', 'none', 'shortr']
+    pipes: ['full', 'full', 'shortl', 'none', 'none', 'shortr'],
+    rails: ['gap', 'full', 'gap', 'full', 'gap', 'full'],
+    type: 'house'
   },
   'D0': {
     from: 'C',
     socket: 4,
     dist: 18,
     alt: 30,
-    pipes: ['shortr', 'full', 'valver', 'full', 'shortl', 'none']
+    pipes: ['shortr', 'full', 'valver', 'full', 'shortl', 'none'],
+    rails: ['gap', 'gap', 'full', 'full', 'full', 'full'],
+    type: 'house'
   },
   'D1': {
     from: 'C',
     socket: 0,
     dist: 20,
     alt: 23,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none']
+    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    rails: ['full', 'full', 'full', 'gap', 'gap', 'full'],
+    type: 'house'
   },
   'E': {
     from: 'two',
@@ -62,56 +82,92 @@ let houses = {
     from1: 'D1',
     socket1: 4,
     alt: 25,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none']
+    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    rails: ['full', 'gap', 'full', 'gap', 'full', 'gap'],
+    type: 'plat'
   },
   'F': {
     from: 'E',
     socket: 5,
     dist: 11,
     alt: 28,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none']
+    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    rails: ['gap', 'gap', 'gap', 'full', 'full', 'full'],
+    type: 'house'
   },
   'G': {
     from: 'F',
     socket: 1,
     dist: 18,
     alt: 30,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none']
+    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    rails: ['full', 'full', 'full', 'full', 'gap', 'full'],
+    type: 'plat'
   },
   'H': {
     from: 'F',
     socket: 0,
     dist: 22,
     alt: 40,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none']
+    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    rails: ['full', 'gap', 'full', 'gap', 'full', 'full'],
+    type: 'house'
   },
   'I': {
     from: 'H',
     socket: 1,
     dist: 18,
     alt: 45,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none']
+    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    rails: ['full', 'gap', 'gap', 'full', 'gap', 'gap'],
+    type: 'plat'
   },
   'J': {
     from: 'I',
     socket: 5,
     dist: 12.5,
     alt: 44,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none']
+    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    rails: ['full', 'full', 'gap', 'full', 'full', 'full'],
+    type: 'house'
   },
   'K': {
     from: 'I',
     socket: 1,
     dist: 12.5,
-    alt: 45,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none']
+    alt: 50,
+    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    rails: ['full', 'full', 'gap', 'full', 'gap', 'full'],
+    type: 'house'
   },
   'L': {
     from: 'I',
     socket: 2,
     dist: 25,
     alt: 55,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none']
+    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    rails: ['gap', 'full', 'full', 'full', 'full', 'gap'],
+    type: 'house'
+  },
+  'M': {
+    from: 'two',
+    from0: 'L',
+    socket0: 0,
+    from1: 'K',
+    socket1: 2,
+    alt: 53,
+    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    rails: ['full', 'full', 'full', 'gap', 'gap', 'gap'],
+    type: 'plat'
+  },
+  'N': {
+    from: 'M',
+    socket: 4,
+    dist: 28,
+    alt: 70,
+    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    rails: ['full', 'gap', 'full', 'full', 'full', 'full'],
+    type: 'house'
   },
 }
 
@@ -129,7 +185,9 @@ for (let houseKey of Object.keys(houses)) {
           houseSpec.alt
         )
       }),
-      houseSpec.pipes
+      houseSpec.pipes,
+      houseSpec.rails,
+      houseSpec.type
     );
     houseSpec.bridges.push(new Bridge(
       houseSpec.ground,
@@ -147,7 +205,9 @@ for (let houseKey of Object.keys(houses)) {
           houseSpec.alt
         )
       }),
-      houseSpec.pipes
+      houseSpec.pipes,
+      houseSpec.rails,
+      houseSpec.type
     );
     houseSpec.bridges.push(new Bridge(
       houses[houseSpec.from0].house.getSocketPos(houseSpec.socket0),
@@ -169,7 +229,9 @@ for (let houseKey of Object.keys(houses)) {
           houseSpec.alt
         )
       }),
-      houseSpec.pipes
+      houseSpec.pipes,
+      houseSpec.rails,
+      houseSpec.type
     );
 
     houseSpec.bridges.push(new Bridge(
@@ -184,26 +246,50 @@ for (let houseKey of Object.keys(houses)) {
 // Create our puzzles!
 let manager = new Manager();
 
+// Create the big trees!
 let treeLocations = [
   //new Vector3(26,36, 28),
-  //new Vector3(17,40,28),
-  new Vector3(40,36,16),
+  //new Vector3(13,40,28),
+  //new Vector3(40,36,16),
   //new Vector3(78,40,18)
 ];
 
 for (let i = 0; i < treeLocations.length; i++) {
   let size = Math.random() * 20 + 60;
-  let tree = new Tree(new Transform({
+  let tree = new Tree(
+    "trunk2",
+    new Transform({
     position: treeLocations[i]
-  }), [
-    houses['A'].house.getPos()
-  ]);
+    }), [
+      houses['A'].house.getPos()
+    ]
+  );
+}
+
+// Create the small trees!
+let humanoidTreeLocations = [
+  new Vector3(30, 2, 20),
+  new Vector3(33, 2, 20),
+  new Vector3(36, 2, 20),
+  new Vector3(39, 2, 20),
+  new Vector3(42, 2, 20),
+  new Vector3(45, 2, 20),
+  new Vector3(48, 2, 20)
+];
+
+for (let i = 0; i < humanoidTreeLocations.length; i++) {
+  let tree = new HumanoidTree(
+    new Transform({
+      position: humanoidTreeLocations[i]
+    }),
+    i
+  );
 }
 
 
 //Create UI (journal pages)
 let ui = new UI([
-    new Vector3(16, 0.15, 8),
+    new Vector3(11.4, 4.6, 12.05),
     new Vector3(17, 0.15, 8),
     new Vector3(18, 0.15, 8),
     new Vector3(19, 0.15, 8),
