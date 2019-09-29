@@ -17,6 +17,7 @@ export class Bridge {
     let segmentOffset = offset.clone().normalize().scale(segmentLength);
     
     // Bridge segments.
+    
     let pos = new Vector3(startPoint.x, startPoint.y, startPoint.z);
     pos = pos.add(segmentOffset.scale(0.5));
     for (var i = 0; i < numSegments; i++) {

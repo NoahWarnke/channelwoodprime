@@ -8,6 +8,7 @@ import {Manager} from 'stateengine/manager';
 import {UI} from 'moduleUI/ui';
 
 // Create our ground (heightmap and lake).
+/*
 let ground = new Ground();
 
 // Create the windmill on the island.
@@ -241,46 +242,118 @@ for (let houseKey of Object.keys(houses)) {
     ));
   }
 }
-
+*/
 
 // Create our puzzles!
-let manager = new Manager();
+//let manager = new Manager();
 
 // Create the big trees!
-let treeLocations = [
-  //new Vector3(26,36, 28),
-  //new Vector3(13,40,28),
-  //new Vector3(40,36,16),
-  //new Vector3(78,40,18)
+let trees = [
+  {
+    pos: new Vector3(13, 35, 30),
+    rot: Quaternion.Euler(0, 60, 0),
+    trunk: 'trunk3',
+    houses: []
+  },
+  /*
+  {
+    pos: new Vector3(26, 35, 20),
+    rot: Quaternion.Euler(0, 0, 0),
+    trunk: 'trunk2',
+    houses: []
+  },
+  {
+    pos: new Vector3(30, 35, 8),
+    rot: Quaternion.Euler(0, 90, 0),
+    trunk: 'trunk4',
+    houses: []
+  },
+  {
+    pos: new Vector3(38, 35, 36),
+    rot: Quaternion.Euler(0, 50, 0),
+    trunk: 'trunk4',
+    houses: []
+  },
+  {
+    pos: new Vector3(51, 35, 33),
+    rot: Quaternion.Euler(0, 290, 0),
+    trunk: 'trunk5',
+    houses: []
+  },
+  {
+    pos: new Vector3(52, 48, 13),
+    rot: Quaternion.Euler(0, 90, 0),
+    trunk: 'trunk3',
+    houses: []
+  },
+  {
+    pos: new Vector3(67, 35, 11),
+    rot: Quaternion.Euler(0, 0, 0),
+    trunk: 'trunk2',
+    houses: []
+  },
+  {
+    pos: new Vector3(67, 35, 32),
+    rot: Quaternion.Euler(0, 15, 0),
+    trunk: 'trunk2',
+    houses: []
+  },
+  */
 ];
 
-for (let i = 0; i < treeLocations.length; i++) {
+for (let i = 0; i < trees.length; i++) {
   let size = Math.random() * 20 + 60;
   let tree = new Tree(
-    "trunk2",
+    trees[i].trunk,
     new Transform({
-    position: treeLocations[i]
+      position: trees[i].pos,
+      rotation: trees[i].rot
     }), [
-      houses.A.house.getPos()
+      {
+        centerPos: new Vector3(15, 0, 5),
+        treehousePos: new Vector3(23.5, 8.5, 5)
+        //centerPos: new Vector3(trees[i].pos.x, houses.A.house.getPos().y - 15, trees[i].pos.z),
+        //treehousePos: houses.A.house.getPos()
+      },
+      {
+        centerPos: new Vector3(15, 0, 10),
+        treehousePos: new Vector3(23.5, 8.6, 10)
+        //centerPos: new Vector3(trees[i].pos.x, houses.A.house.getPos().y - 15, trees[i].pos.z),
+        //treehousePos: houses.A.house.getPos()
+      },
+      {
+        centerPos: new Vector3(15, 0, 15),
+        treehousePos: new Vector3(23.5, 10, 15)
+        //centerPos: new Vector3(trees[i].pos.x, houses.A.house.getPos().y - 15, trees[i].pos.z),
+        //treehousePos: houses.A.house.getPos()
+      },
+      {
+        centerPos: new Vector3(15, 0, 20),
+        treehousePos: new Vector3(23.5, 12, 20)
+        //centerPos: new Vector3(trees[i].pos.x, houses.A.house.getPos().y - 15, trees[i].pos.z),
+        //treehousePos: houses.A.house.getPos()
+      }
     ]
   );
 }
-
+/*
 // Create the small trees!
 let humanoidTreeLocations = [
-  new Vector3(30, 2, 20),
-  new Vector3(33, 2, 20),
-  new Vector3(36, 2, 20),
-  new Vector3(39, 2, 20),
-  new Vector3(42, 2, 20),
-  new Vector3(45, 2, 20),
-  new Vector3(48, 2, 20)
+  new Vector3(7, 0, 40),
+  new Vector3(22, 0, 6),
+  new Vector3(36, 0, 28),
+  new Vector3(43, 0, 19),
+  new Vector3(54, 0, 42),
+  new Vector3(65, 0, 17),
+  new Vector3(70, 0, 34)
 ];
 
 for (let i = 0; i < humanoidTreeLocations.length; i++) {
   let tree = new HumanoidTree(
     new Transform({
-      position: humanoidTreeLocations[i]
+      position: humanoidTreeLocations[i],
+      scale: new Vector3(3, 3, 3),
+      rotation: Quaternion.Euler(0, i * 360 / 7, 0)
     }),
     i
   );
@@ -300,3 +373,4 @@ let ui = new UI([
     houses.M.house.getPos(),
     houses.N.house.getPos()
 ]);
+*/

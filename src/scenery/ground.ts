@@ -8,5 +8,14 @@ export class Ground {
       rotation: Quaternion.Euler(0, -90, 0)
     }));
     engine.addEntity(heightmap);
+    
+    let credits = new Entity();
+    credits.addComponent(new GLTFShape('models/ground/memorialStone.glb'));
+    credits.addComponent(new Transform({
+      position: new Vector3(6.7, 0.55, 14.5),
+      scale: new Vector3(0.4, 0.4, 0.4),
+      rotation: Quaternion.Euler(-10, -80, 0)
+    }));
+    engine.addEntity(credits);
   }
 }

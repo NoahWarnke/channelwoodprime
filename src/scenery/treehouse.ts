@@ -40,12 +40,14 @@ export class Treehouse {
     house.setParent(root);
     
     // Treehand. Easier to attach it here than to the tree.
+    /*
     let hand = new Entity();
     hand.addComponent(new GLTFShape('models/trees/hand_v2.glb'));
     hand.addComponent(new Transform({
       //rotation:  Quaternion.Euler(0, 30, 0)
     }));
     hand.setParent(root);
+    */
     
     // Load the pipes
     for (let i = 0; i < 6; i++) {
