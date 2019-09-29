@@ -1,6 +1,7 @@
 ## Acknowledgements
 
 - _gate-latch.mp3_ (https://freesound.org/people/mhtaylor67/sounds/126041/)
+- _gate-opening.mp3_ (https://freesound.org/people/jorickhoofd/sounds/160048/)
 - _handle-squeak.mp3_ (https://freesound.org/people/lolamadeus/sounds/217174/)
 - _creek-a.mp3_ (https://freesound.org/people/Bini_trns/sounds/393998/)
 - _creek-b.mp3_ (https://freesound.org/people/Bini_trns/sounds/393998/)
