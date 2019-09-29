@@ -6,6 +6,7 @@ import {Bridge} from 'scenery/bridge';
 import {Windmill} from 'scenery/windmill'
 import {Manager} from 'stateengine/manager';
 import {UI} from 'moduleUI/ui';
+import {ParticleScenes} from 'particle/particleSys';
 
 // Create our ground (heightmap and lake).
 let ground = new Ground();
@@ -300,3 +301,7 @@ let ui = new UI([
     houses.M.house.getPos(),
     houses.N.house.getPos()
 ]);
+
+
+//Add fairy dust particles if needed
+const pS = new ParticleScenes()
