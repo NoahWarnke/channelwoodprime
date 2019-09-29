@@ -1,5 +1,6 @@
 import UIclasses, { rectJournal } from "./UIobjects"
 import UIresources from "./UIresources";
+import { audioPages } from "./audioEntity"
 
 export const gameUI = (function () {
     let pageUIActive = false
@@ -25,6 +26,8 @@ export const gameUI = (function () {
             //SHOWING JOURNAL
             UIclasses.UIObjects.journalPage.pages[i - 1].unlockPage()
             UIclasses.UIObjects.journalPage.pages[i - 1].show()
+
+            audioPages[i - 1].act()
 
             //log("UNLOCK JOURNAL")
             pageUIActive = true
@@ -53,7 +56,9 @@ export const gameUI = (function () {
                 gameUI.hideJournalSummary()
                 journalUIActive = true
             }
+
             UIclasses.UIObjects.journalPage.pages[i - 1].show()
+            audioPages[i - 1].act()
 
             pageUIActive = true
             activePage = i
@@ -62,6 +67,7 @@ export const gameUI = (function () {
             //log("hide page, ", activePage)
 
             UIclasses.UIObjects.journalPage.pages[activePage - 1].hide()
+            audioPages[activePage - 1].deact()
 
             pageUIActive = false
 
