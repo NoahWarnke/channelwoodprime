@@ -20,6 +20,7 @@ UIclasses.UIObjects.Icon.journalSummaryBtn.uiImage.onClick = new OnClick(() => {
 })
 
 //audio button
+/*
 UIclasses.UIObjects.Icon.audioBtnOff.uiImage.onClick = new OnClick(() => {
     //log("audio set to ON")
     UIclasses.UIObjects.Icon.audioBtnOn.uiImage.visible = true
@@ -32,6 +33,7 @@ UIclasses.UIObjects.Icon.audioBtnOn.uiImage.onClick = new OnClick(() => {
     UIclasses.UIObjects.Icon.audioBtnOff.uiImage.visible = true
     gameUI.setAudioState(false)
 })
+*/
 
 //page thumbnail in journal summary
 for (let i = 0; i < 10; i += 1) {

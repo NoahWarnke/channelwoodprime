@@ -6,9 +6,10 @@ import {Bridge} from 'scenery/bridge';
 import {Windmill} from 'scenery/windmill'
 import {Manager} from 'stateengine/manager';
 import {UI} from 'moduleUI/ui';
+import {ParticleScenes} from 'particle/particleSys';
 
 // Create our ground (heightmap and lake).
-/*
+
 let ground = new Ground();
 
 // Create the windmill on the island.
@@ -242,18 +243,30 @@ for (let houseKey of Object.keys(houses)) {
     ));
   }
 }
-*/
+
 
 // Create our puzzles!
 //let manager = new Manager();
 
 // Create the big trees!
 let trees = [
+  
   {
     pos: new Vector3(13, 35, 30),
     rot: Quaternion.Euler(0, 60, 0),
     trunk: 'trunk3',
-    houses: []
+    houses: [
+      {
+        centerPos: new Vector3(14, houses.B0.house.getPos().y - 10, 30),
+        treehousePos: houses.B0.house.getPos()
+      }
+    ],
+    foliage: [
+      {
+        centerPos: new Vector3(14, 30, 30),
+        folPos: new Vector3(9, 35, 40)
+      }
+    ]
   },
   /*
   {
@@ -308,35 +321,12 @@ for (let i = 0; i < trees.length; i++) {
     new Transform({
       position: trees[i].pos,
       rotation: trees[i].rot
-    }), [
-      {
-        centerPos: new Vector3(15, 0, 5),
-        treehousePos: new Vector3(23.5, 8.5, 5)
-        //centerPos: new Vector3(trees[i].pos.x, houses.A.house.getPos().y - 15, trees[i].pos.z),
-        //treehousePos: houses.A.house.getPos()
-      },
-      {
-        centerPos: new Vector3(15, 0, 10),
-        treehousePos: new Vector3(23.5, 8.6, 10)
-        //centerPos: new Vector3(trees[i].pos.x, houses.A.house.getPos().y - 15, trees[i].pos.z),
-        //treehousePos: houses.A.house.getPos()
-      },
-      {
-        centerPos: new Vector3(15, 0, 15),
-        treehousePos: new Vector3(23.5, 10, 15)
-        //centerPos: new Vector3(trees[i].pos.x, houses.A.house.getPos().y - 15, trees[i].pos.z),
-        //treehousePos: houses.A.house.getPos()
-      },
-      {
-        centerPos: new Vector3(15, 0, 20),
-        treehousePos: new Vector3(23.5, 12, 20)
-        //centerPos: new Vector3(trees[i].pos.x, houses.A.house.getPos().y - 15, trees[i].pos.z),
-        //treehousePos: houses.A.house.getPos()
-      }
-    ]
+    }),
+    trees[i].houses,
+    trees[i].foliage
   );
 }
-/*
+
 // Create the small trees!
 let humanoidTreeLocations = [
   new Vector3(7, 0, 40),
@@ -373,4 +363,6 @@ let ui = new UI([
     houses.M.house.getPos(),
     houses.N.house.getPos()
 ]);
-*/
+
+//Add fairy dust particles if needed
+const pS = new ParticleScenes();

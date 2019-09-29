@@ -7,10 +7,11 @@ export class Tree {
     trunk4: new GLTFShape('models/trees/trunk4_v2.glb'),
     trunk5: new GLTFShape('models/trees/trunk5_v2.glb'),
     forearm: new GLTFShape('models/trees/forearm_v2.glb'),
-    upperarm: new GLTFShape('models/trees/upperarm_v2.glb')
+    upperarm: new GLTFShape('models/trees/upperarm_v2.glb'),
+    fol1: new GLTFShape('models/trees/foliage1.glb')
   }
   
-  constructor(trunkName: string, transform: Transform, treehousePositions: {centerPos: Vector3, treehousePos: Vector3}[]) {
+  constructor(trunkName: string, transform: Transform, treehousePositions: {centerPos: Vector3, treehousePos: Vector3}[], foliagePositions: {centerPos: Vector3, folPos: Vector3}[]) {
     
     let treeCenter = transform.position.clone();
     treeCenter.y -= 36;
@@ -21,6 +22,11 @@ export class Tree {
     
     for (var i = 0; i < treehousePositions.length; i++) {
       this.addBranch(treehousePositions[i].centerPos, treehousePositions[i].treehousePos);
+    }
+    
+    for (var i = 0; i < foliagePositions.length; i++) {
+      this.addBranch(foliagePositions[i].centerPos, foliagePositions[i].folPos.subtract(new Vector3(0, 5, 0)));
+      this.addFoliage(foliagePositions[i].folPos);
     }
     
     engine.addEntity(tree);
@@ -61,11 +67,12 @@ export class Tree {
     // Transforms:
     let upperTransf = new Transform({position: start});
     upperTransf.lookAt(elbowPt);
-    //upperTransf.rotation.conjugateInPlace();
+    upperTransf.rotation.conjugateInPlace();
     
     let lowerTransf = new Transform({position: elbowPt});
     lowerTransf.lookAt(end);
     //lowerTransf.rotation.conjugateInPlace();
+    lowerTransf.scale.set(0.1, 0.1, 8.5);
     
     // entities
     let upper = new Entity();
@@ -74,8 +81,18 @@ export class Tree {
     engine.addEntity(upper);
     
     let fore = new Entity();
-    fore.addComponent(Tree.shapes.forearm);
+    fore.addComponent(/*Tree.shapes.forearm*/ new CylinderShape());
     fore.addComponent(lowerTransf);
     engine.addEntity(fore);
+  }
+  
+  public addFoliage(pos: Vector3) {
+    let foliage = new Entity();
+    foliage.addComponent(Tree.shapes.fol1)
+    foliage.addComponent(new Transform({
+      position: pos,
+      scale: new Vector3(0.5, 0.5, 0.5)
+    }));
+    engine.addEntity(foliage);
   }
 }

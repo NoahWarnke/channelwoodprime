@@ -8,7 +8,9 @@ export class UI {
             journalPage[i].addParticleSys()
         }
     }
-    static getAudioState() {
+    /*
+     * static getAudioState() {
         return gameUI.getAudioState()
     }
+    */
 }

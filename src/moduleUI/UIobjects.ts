@@ -166,10 +166,10 @@ const JournalSummary = {
 }
 
 let journalSummaryBtn = new SingleUI(rectIcon, UIresources.texture.iconJournalSummary, 0, 0, 64, 64, 64, 64, 450, -650)
-let audioBtnOn = new SingleUI(rectIcon, UIresources.texture.iconAudioOn, 0, 0, 64, 64, 64, 64, 600, -650)
-let audioBtnOff = new SingleUI(rectIcon, UIresources.texture.iconAudioOff, 0, 0, 64, 64, 64, 64, 600, -650)
-audioBtnOff.uiImage.visible = false
-audioBtnOn.uiImage.visible = true
+//let audioBtnOn = new SingleUI(rectIcon, UIresources.texture.iconAudioOn, 0, 0, 64, 64, 64, 64, 600, -650)
+//let audioBtnOff = new SingleUI(rectIcon, UIresources.texture.iconAudioOff, 0, 0, 64, 64, 64, 64, 600, -650)
+//audioBtnOff.uiImage.visible = false
+//audioBtnOn.uiImage.visible = false
 
 export default {
     UIObjects: {
@@ -177,8 +177,8 @@ export default {
         journalSummary: JournalSummary,
         Icon: {
             journalSummaryBtn: journalSummaryBtn,
-            audioBtnOff: audioBtnOff,
-            audioBtnOn: audioBtnOn
+            //audioBtnOff: audioBtnOff,
+            //audioBtnOn: audioBtnOn
         }
     }
 }

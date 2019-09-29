@@ -35,6 +35,19 @@ export default {
     //3D MODEL
     model: {
         journalPageModel: new GLTFShape("models/journalPage/journalPage.gltf")
-    }
+    },
+    //AUDIO
+    audio: [
+        new AudioSource(new AudioClip("sounds/page1.mp3")),
+        new AudioSource(new AudioClip("sounds/page2.mp3")),
+        new AudioSource(new AudioClip("sounds/page3.mp3")),
+        new AudioSource(new AudioClip("sounds/page4.mp3")),
+        new AudioSource(new AudioClip("sounds/page5.mp3")),
+        new AudioSource(new AudioClip("sounds/page6.mp3")),
+        new AudioSource(new AudioClip("sounds/page7.mp3")),
+        new AudioSource(new AudioClip("sounds/page8.mp3")),
+        new AudioSource(new AudioClip("sounds/page9.mp3")),
+        new AudioSource(new AudioClip("sounds/page10.mp3"))
+    ]
 
 }
