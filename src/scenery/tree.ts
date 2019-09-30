@@ -15,7 +15,7 @@ export class Tree {
     trunkName: string,
     transform: Transform,
     treehousePositions: {centerPos: Vector3, treehousePos: Vector3, scale: number}[],
-    foliagePositions: {centerPos: Vector3, folPos: Vector3}[]
+    foliagePositions: {centerPos: Vector3, folPos: Vector3, scale: number}[]
   ) {
     
     let treeCenter = transform.position.clone();
@@ -30,7 +30,7 @@ export class Tree {
     }
     
     for (var i = 0; i < foliagePositions.length; i++) {
-      this.addBranch(foliagePositions[i].centerPos, foliagePositions[i].folPos.subtract(new Vector3(0, 5, 0)), 1);
+      this.addBranch(foliagePositions[i].centerPos, foliagePositions[i].folPos.subtract(new Vector3(0, 2, 0)), foliagePositions[i].scale);
       this.addFoliage(foliagePositions[i].folPos);
     }
     

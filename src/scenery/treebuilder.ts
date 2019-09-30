@@ -24,12 +24,11 @@ export class TreeBuilder {
           }
         ],
         [
-          /*
           {
-            centerPos: new Vector3(14, 30, 30),
-            folPos: new Vector3(9, 35, 40)
+            centerPos: new Vector3(13, 30, 32),
+            folPos: new Vector3(9, 35, 40),
+            scale: 0.3
           }
-          */
         ]
       ),
       new Tree(
