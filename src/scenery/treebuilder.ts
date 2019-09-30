@@ -109,7 +109,26 @@ export class TreeBuilder {
             scale: 0.35
           },   
         ],
-        []
+        [
+          {
+            folType: 'fol3',
+            centerPos: new Vector3(29, 8, 8.5),
+            folPos: new Vector3(18, 22, 9),
+            scale: 0.4
+          },      
+          {
+            folType: 'fol6',
+            centerPos: new Vector3(31, 36, 8),
+            folPos: new Vector3(40, 53, 4),
+            scale: 0.35
+          },      
+          {
+            folType: 'fol9',
+            centerPos: new Vector3(30, 55, 9.5),
+            folPos: new Vector3(31, 70, 15),
+            scale: 0.25
+          },      
+        ]
       ),
 
       /// Tree4 -- A -- D1 
