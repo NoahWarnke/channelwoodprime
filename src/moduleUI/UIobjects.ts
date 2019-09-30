@@ -136,7 +136,7 @@ for (let i = 0; i < 10; i++) {
 const journalPage = {
     pages: pages,
     closeBtn: new SingleUI(rectPage, UIresources.texture.journalBackground,
-        48, 475, 48, 48, 64, 64, 350, -10)
+        48, 475, 48, 48, 80, 80, 350, -10)
 }
 
 //create background for journal
@@ -164,11 +164,11 @@ const JournalSummary = {
     background: journalBackground,
     journalThumbnail: journalThumbnail,
     closeBtn: new SingleUI(rectJournal, UIresources.texture.journalBackground,
-        48, 475, 48, 48, 64, 64, 350, -10)
+        48, 475, 48, 48, 80, 80, 350, -10)
 }
 
 let journalSummaryBtn = new SingleUI(rectIcon, UIresources.texture.journalBackground,
-    0, 475, 48, 48, 64, 64, 450, -650)
+    0, 475, 48, 48, 80, 80, 425, -645)
 //let audioBtnOn = new SingleUI(rectIcon, UIresources.texture.iconAudioOn, 0, 0, 64, 64, 64, 64, 600, -650)
 //let audioBtnOff = new SingleUI(rectIcon, UIresources.texture.iconAudioOff, 0, 0, 64, 64, 64, 64, 600, -650)
 //audioBtnOff.uiImage.visible = false
