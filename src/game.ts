@@ -6,6 +6,7 @@ import {Windmill} from 'scenery/windmill'
 import {Manager} from 'stateengine/manager';
 import {UI} from 'moduleUI/ui';
 import {ParticleScenes} from 'particle/particleSys';
+import {AudioAmbient, AudioWindmill} from 'sceneaudio/sceneAudio';
 
 // Create our ground (heightmap and lake).
 let ground = new Ground();
@@ -64,6 +65,9 @@ let ui = new UI([
 //Add fairy dust particles if needed
 const pS = new ParticleScenes();
 
+//Add audio for day ambient and windmill
+let audioWindmill = new AudioWindmill()
+let audioAmbient = new AudioAmbient()
 
 
 
