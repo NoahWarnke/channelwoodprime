@@ -72,7 +72,7 @@ export class TreeBuilder {
           {
             folType: 'fol2',
             centerPos: new Vector3(28, 4, 20.5),
-            folPos: new Vector3(40, 18, 15),
+            folPos: new Vector3(40, 16, 15),
             scale: 0.55
           },      
           {
@@ -150,7 +150,26 @@ export class TreeBuilder {
             scale: 0.33
           },  
         ],
-        []
+        [
+          {
+            folType: 'fol4',
+            centerPos: new Vector3(38.75, 6, 36),
+            folPos: new Vector3(48, 19, 36),
+            scale: 0.4
+          },   
+          {
+            folType: 'fol7',
+            centerPos: new Vector3(38.25, 24.5, 37.5),
+            folPos: new Vector3(38.75, 40, 42),
+            scale: 0.4
+          },   
+          {
+            folType: 'fol8',
+            centerPos: new Vector3(37, 45, 35),
+            folPos: new Vector3(30, 60, 28),
+            scale: 0.3
+          },   
+        ]
       ),
 
       /// Tree 5 -- B1 -- G -- L
@@ -177,7 +196,20 @@ export class TreeBuilder {
             scale: 0.25
           },  
         ],
-        []
+        [
+          {
+            folType: 'fol1',
+            centerPos: new Vector3(51.25, 5.5, 32),
+            folPos: new Vector3(55, 19, 22),
+            scale: 0.5
+          },   
+          // {
+          //   folType: 'fol2',
+          //   centerPos: new Vector3(51.25, 25, 32),
+          //   folPos: new Vector3(60, 40, 40),
+          //   scale: 0.4
+          // },   
+        ]
       ),
 
       /// Tree 6 -- N -- H
