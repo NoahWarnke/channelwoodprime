@@ -28,11 +28,24 @@ export class TreeBuilder {
         ],
         // Array of foliage branch positions. Same drill as above, except here, you can pick the foliage position to be wherever you want.
         [
-          // {
-          //   centerPos: new Vector3(13, 30, 32),
-          //   folPos: new Vector3(9, 35, 40),
-          //   scale: 0.3
-          // },
+          {
+            folType: 'fol3',
+            centerPos: new Vector3(13, 6, 29.5),
+            folPos: new Vector3(4, 20, 20),
+            scale: 0.5
+          },
+          {
+            folType: 'fol1',
+            centerPos: new Vector3(13, 30, 32),
+            folPos: new Vector3(9.5, 35, 40),
+            scale: 0.4
+          },
+          {
+            folType: 'fol11',
+            centerPos: new Vector3(13.5, 45, 32),
+            folPos: new Vector3(13, 60, 25),
+            scale: 0.3
+          },
         ]
       ),
 
@@ -55,7 +68,26 @@ export class TreeBuilder {
             scale: 0.4
           }
         ],
-        []
+        [
+          {
+            folType: 'fol2',
+            centerPos: new Vector3(28, 4, 20.5),
+            folPos: new Vector3(40, 18, 15),
+            scale: 0.55
+          },      
+          {
+            folType: 'fol4',
+            centerPos: new Vector3(26.75, 17, 22.5),
+            folPos: new Vector3(36, 32, 28),
+            scale: 0.4
+          },      
+          {
+            folType: 'fol6',
+            centerPos: new Vector3(25, 32, 21),
+            folPos: new Vector3(18, 50, 17),
+            scale: 0.3
+          },      
+        ]
       ),
 
       /// Tree3 -- E -- F  
@@ -173,7 +205,7 @@ export class TreeBuilder {
         []
       ),
 
-    /// Tree 8 -- K -- M
+      /// Tree 8 -- K -- M
       new Tree(
         'trunk2',
         new Transform({
