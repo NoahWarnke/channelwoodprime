@@ -67,7 +67,7 @@ export class TreeBuilder {
         }),
         [
           {
-            centerPos: new Vector3(30, houses.E.getPos().y - 15, 9),
+            centerPos: new Vector3(30.5, houses.E.getPos().y - 15, 9),
             treehousePos: houses.E.getPos(),
             scale: 0.4
           },  
