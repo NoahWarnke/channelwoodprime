@@ -19,10 +19,11 @@ let houseAndBridgeBuilder = new HouseAndBridgeBuilder();
 let houses = houseAndBridgeBuilder.build();
 
 // Create our puzzles!
-let puzzleBuilder = new PuzzleBuilder(houses);
+let puzzleBuilder = new PuzzleBuilder(houses, windmill.valve);
 puzzleBuilder.build();
 
 // Create our trees!
+
 let treeBuilder = new TreeBuilder();
 treeBuilder.build(houses);
 
@@ -47,9 +48,6 @@ for (let i = 0; i < humanoidTreeLocations.length; i++) {
     i
   );
 }
-
-// Create our puzzles!
-//let manager = new Manager();
 
 //Create UI (journal pages)
 

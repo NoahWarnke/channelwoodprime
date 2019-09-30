@@ -7,12 +7,16 @@ export class RealValve {
   public leftTurn: AnimationState;
   public rightTurn: AnimationState;
   
+  public audioSource: AudioSource;
+  
   constructor(entity: Entity, valve: Valve) {
     
     this.valve = valve;
     
     this.entity = entity;
-    this.entity.addComponent(new OnClick(this.click.bind(this)));
+    this.entity.addComponent(new OnClick(() => {
+      this.click();
+    }));
     
     let animator = new Animator();
     this.entity.addComponent(animator);
@@ -26,12 +30,17 @@ export class RealValve {
     this.rightTurn.looping = false;
     animator.addClip(this.rightTurn);
     
-    engine.addEntity(this.entity);
-    
     // Default to left, so play right if needed.
     if (this.valve.state === 'right') {
       this.rightTurn.play();
     }
+    
+    // Sounds
+    this.audioSource = new AudioSource(new AudioClip('sounds/handle-squeak.mp3'));
+    this.entity.addComponent(this.audioSource);
+    this.audioSource.volume = 4;
+    this.audioSource.loop = false;
+    this.audioSource.playing = false;
   }
   
   public click(): void {
@@ -41,6 +50,7 @@ export class RealValve {
       this.leftTurn.stop();
       this.rightTurn.reset();
       this.rightTurn.play();
+      this.audioSource.playOnce();
     }
     else {
       log('=======> turning to the left!');
@@ -48,6 +58,7 @@ export class RealValve {
       this.rightTurn.stop();
       this.leftTurn.reset();
       this.leftTurn.play();
+      this.audioSource.playOnce();
     }
   }
 }

@@ -12,6 +12,8 @@ export class Gate {
   public openClip: AnimationState;
   public closeClip: AnimationState;
   
+  public audioSource: AudioSource;
+  
   constructor(entity: Entity, pipe: PipeNode, graph: Graph) {
     
     // The pipe this gate is powered by.
@@ -24,9 +26,18 @@ export class Gate {
     
     this.entity = entity;
     
-    this.entity.addComponent(new OnClick(this.click.bind(this)));
+    this.entity.addComponent(new OnClick(() => {
+      let pos = this.entity.getComponent(Transform).position;
+      let camPos = Camera.instance.position;
+      let dist = camPos.subtract(pos).length();
+      log (dist);
+      if (dist > 4) {
+        return;
+      }
+      this.click();
+    }));
     
-    //
+    // Animations
     let animator = new Animator();
     this.entity.addComponent(animator);
 
@@ -38,7 +49,13 @@ export class Gate {
     this.closeClip.looping = false;
     animator.addClip(this.closeClip);
     
-    engine.addEntity(this.entity);
+    // Sounds
+    this.audioSource = new AudioSource(new AudioClip('sounds/gate-opening.mp3'));
+    this.entity.addComponent(this.audioSource);
+    this.audioSource.volume = 4;
+    this.audioSource.loop = false;
+    this.audioSource.playing = false;
+
   }
   
   // Check if the connected edge has power or not, and go down if no power.
@@ -56,6 +73,7 @@ export class Gate {
     this.closeClip.stop();
     this.openClip.reset();
     this.openClip.play();
+    this.playSound();
   }
   
   public makeGoDown() {
@@ -63,6 +81,11 @@ export class Gate {
     this.openClip.stop();
     this.closeClip.reset();
     this.closeClip.play();
+    this.playSound();
+  }
+  
+  public playSound() {
+    this.audioSource.playOnce();
   }
   
   public click() {

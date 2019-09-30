@@ -1,6 +1,9 @@
 import {PipePath} from 'pipepath';
 
 export class Windmill {
+  
+  public valve: Entity;
+  
   constructor() {
 
     let windmill = new Entity();
@@ -46,5 +49,14 @@ export class Windmill {
       false,
       false
     )
+    
+    this.valve = new Entity();
+    this.valve.addComponent(new GLTFShape('models/pipes/valveOnly.glb'));
+    this.valve.addComponent(new Transform({
+      position: new Vector3(12.8, 1.38, 16.85),
+      rotation: Quaternion.Euler(0, -70, 0)
+    }));
+    engine.addEntity(this.valve);
+
   }
 }

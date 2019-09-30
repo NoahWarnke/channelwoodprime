@@ -11,9 +11,11 @@ import {Gate} from 'gate';
 export class PuzzleBuilder {
   
   public houses: {[index: string]: Treehouse};
+  public windmillValve: Entity;
   
-  constructor(houses: {[index: string]: Treehouse}) {
+  constructor(houses: {[index: string]: Treehouse}, windmillValve: Entity) {
     this.houses = houses;
+    this.windmillValve = windmillValve;
   }
   
   build(): Graph {
@@ -21,13 +23,13 @@ export class PuzzleBuilder {
     
     let graph = new Graph({
       lw: new PipeNode(true, true),
-      wa: new PipeNode(true, false),
+      wa: new PipeNode(false, false),
       ab1: new PipeNode(false, false),
       ab0: new PipeNode(false, false)
     });
     
     let valves = {
-      w: new Valve('right', undefined, graph.pipes.lw, graph.pipes.wa, false, true, false, graph),
+      w: new Valve('left', undefined, graph.pipes.lw, graph.pipes.wa, false, true, false, graph),
       a: new Valve('left', graph.pipes.ab1, graph.pipes.wa, graph.pipes.ab0, false, true, false, graph),
       //new Valve('right', undefined, graph.pipes.lw, graph.pipes.wa, false, true, false, graph),
       //new Valve('right', undefined, graph.pipes.lw, graph.pipes.wa, false, true, false, graph),
@@ -37,6 +39,7 @@ export class PuzzleBuilder {
     };
     
     let realValves = {
+      w: new RealValve(this.windmillValve, valves.w),
       a: new RealValve(this.houses.A.valves[4], valves.a)
     };
     
