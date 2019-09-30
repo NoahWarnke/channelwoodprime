@@ -1,7 +1,15 @@
 
 export class Bridge {
   
-  constructor(startPoint: Vector3, endPoint: Vector3, pipeStatus: number) {
+  public shapes = {
+    posts: new GLTFShape('models/bridges/bridgeEndModule.glb'),
+    gate: new GLTFShape('models/bridges/gate.glb')
+  };
+  
+  public module0: Entity;
+  public module1: Entity;
+  
+  constructor(startPoint: Vector3, endPoint: Vector3, module0: string, module1: string) {
     
     let model = new GLTFShape('models/bridges/bridge_no_railings.glb');
     
@@ -33,22 +41,21 @@ export class Bridge {
     }
     
     // End modules.
-    let endModuleShape = new GLTFShape('models/bridges/bridgeEndModule.glb');
-    let endModule0 = new Entity();
-    endModule0.addComponent(endModuleShape);
-    endModule0.addComponent(new Transform({
+    this.module0 = new Entity();
+    this.module0.addComponent(this.shapes[module0]);
+    this.module0.addComponent(new Transform({
       position: startPoint,
       rotation: Quaternion.Euler(0, Math.atan2(offset.x, offset.z) * 180 / Math.PI, 0)
     }));
-    engine.addEntity(endModule0);
+    engine.addEntity(this.module0);
     
-    let endModule1 = new Entity();
-    endModule1.addComponent(endModuleShape);
-    endModule1.addComponent(new Transform({
+    this.module1 = new Entity();
+    this.module1.addComponent(this.shapes[module1]);
+    this.module1.addComponent(new Transform({
       position: endPoint,
       rotation: Quaternion.Euler(0, Math.atan2(offset.x, offset.z) * 180 / Math.PI, 0)
     }));
-    engine.addEntity(endModule1);
+    engine.addEntity(this.module1);
     
     // Catenary ropes
     let catenary = new Entity();

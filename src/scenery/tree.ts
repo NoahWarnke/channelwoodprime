@@ -60,20 +60,13 @@ export class Tree {
     // xy angle
     let xya = Math.atan2(offset.y, Math.sqrt(offset.x * offset.x + offset.z * offset.z));
     
-    
-    log ("xza: " +  xza * 180 / Math.PI);
-    log ("xya: " + xya * 180 / Math.PI);
-    
     // Angle
     let a = Math.acos(dist / 18) // two arm pieces, each 8.5m long, are the hypotenuse of two triangles
-    log ("a: " + a * 180 / Math.PI);
     
     // Pivot point around which elbow point rotates
     let elbowPt = new Vector3(Math.cos(xza) * Math.cos(xya - a), Math.sin(xya - a), Math.sin(xza) * Math.cos(xya - a));
     elbowPt.scaleInPlace(9);
     elbowPt.addInPlace(start);
-    
-    log (elbowPt);
     
     // Transforms:
     let upperTransf = new Transform({position: start});

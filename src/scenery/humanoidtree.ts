@@ -19,14 +19,13 @@ export class HumanoidTree {
     trunk.addComponent(transform);
     trunk.addComponent(HumanoidTree.trunks[model]);
     
-    /*
+    
     let leaves = new Entity;
     leaves.addComponent(HumanoidTree.leaves);
     leaves.addComponent(new Transform({
       position: new Vector3(0, 10, 0)
     }));
     leaves.setParent(trunk);
-    */
     
     engine.addEntity(trunk);
   }

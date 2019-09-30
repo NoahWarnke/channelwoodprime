@@ -9,6 +9,12 @@ export class HouseSpec {
   from1?: string;
   socket0?: number;
   socket1?: number;
+  frommodule0?: string;
+  frommodule1?: string;
+  from0module0?: string;
+  from0module1?: string;
+  from1module0?: string;
+  from1module1?: string;
   dist?: number;
   alt: number;
   pipes: string[];

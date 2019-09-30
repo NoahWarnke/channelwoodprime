@@ -1,4 +1,6 @@
 
+import {Bridge} from 'bridge';
+
 export class Treehouse {
   
   static pipeShapes: {[index: string]: GLTFShape} = {
@@ -23,6 +25,9 @@ export class Treehouse {
   };
   
   public centerPos: Vector3;
+  public incomingBridges: {[index: string]: Bridge};
+  public outgoingBridges: {[index: string]: Bridge};
+  public valves: {[index: string]: Entity};
   
   constructor(transform: Transform, pipeLayout: string[], railLayout: string[], whichHouse: string) {
     
@@ -30,6 +35,9 @@ export class Treehouse {
     let root = new Entity();
     root.addComponent(transform);
     this.centerPos = transform.position;
+    this.incomingBridges = {};
+    this.outgoingBridges = {};
+    this.valves = {};
     
     // The actual house.
     let house = new Entity();
@@ -60,6 +68,11 @@ export class Treehouse {
         rotation: Quaternion.Euler(0, i * -60 + 90, 0)
       }));
       pipe.setParent(root);
+      
+      // Save valves, since we need to do some stuff with them.
+      if (pipeLayout[i].indexOf('valve') > -1) {
+        this.valves[i] = pipe;
+      }
     }
     
     // Load the railings.
