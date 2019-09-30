@@ -2,13 +2,13 @@
 export class HumanoidTree {
   
   static trunks: GLTFShape[] = [
-    new GLTFShape('models/trees/humanoidtree_1.gltf'),
-    new GLTFShape('models/trees/humanoidtree_2.gltf'),
-    new GLTFShape('models/trees/humanoidtree_3.gltf'),
-    new GLTFShape('models/trees/humanoidtree_4.gltf'),
-    new GLTFShape('models/trees/humanoidtree_5.gltf'),
-    new GLTFShape('models/trees/humanoidtree_6.gltf'),
-    new GLTFShape('models/trees/humanoidtree_7.gltf'),
+    new GLTFShape('models/trees/humanoidtree1_v2.glb'),
+    new GLTFShape('models/trees/humanoidtree2_v2.glb'),
+    new GLTFShape('models/trees/humanoidtree3_v2.glb'),
+    new GLTFShape('models/trees/humanoidtree4_v2.glb'),
+    new GLTFShape('models/trees/humanoidtree5_v2.glb'),
+    new GLTFShape('models/trees/humanoidtree6_v2.glb'),
+    new GLTFShape('models/trees/humanoidtree7_v2.glb'),
   ]
   
   static leaves: GLTFShape = new GLTFShape('models/tree/foliage1.glb');

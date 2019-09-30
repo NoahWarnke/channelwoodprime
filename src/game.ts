@@ -2,6 +2,7 @@ import {Ground} from 'scenery/ground';
 import {Tree} from 'scenery/tree';
 import {HumanoidTree} from 'scenery/humanoidtree';
 import {Treehouse} from 'scenery/treehouse';
+import {HouseSpec} from 'scenery/housespec';
 import {Bridge} from 'scenery/bridge';
 import {Windmill} from 'scenery/windmill'
 import {Manager} from 'stateengine/manager';
@@ -21,14 +22,14 @@ let windmill = new Windmill(
   })
 );
 
-let houses = {
+let houses: {[index: string]: HouseSpec} = {
   'A': {
     from: 'ground',
     ground: new Vector3(14, 1.4, 17),
     socket: 1,
     dist: 30,
     alt: 15,
-    pipes: ['none', 'none', 'none', 'shortr', 'valver', 'medl'],
+    pipes: ['medl', 'none', 'none', 'shortr', 'valvel', 'full'],
     rails: ['gap', 'full', 'full', 'gap', 'gap', 'full'],
     type: 'plat'
   },
@@ -37,7 +38,7 @@ let houses = {
     socket: 3,
     dist: 15,
     alt: 18,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    pipes: ['shortl', 'none', 'none', 'none', 'none', 'shortr'],
     rails: ['gap', 'full', 'full', 'full', 'full', 'gap'],
     type: 'house'
   },
@@ -55,7 +56,7 @@ let houses = {
     socket: 5,
     dist: 14,
     alt: 23,
-    pipes: ['full', 'full', 'shortl', 'none', 'none', 'shortr'],
+    pipes: ['shortr', 'full', 'valvel', 'full', 'medl', 'none'],
     rails: ['gap', 'full', 'gap', 'full', 'gap', 'full'],
     type: 'house'
   },
@@ -64,7 +65,7 @@ let houses = {
     socket: 4,
     dist: 18,
     alt: 30,
-    pipes: ['shortr', 'full', 'valver', 'full', 'shortl', 'none'],
+    pipes: ['shortr', 'shortl', 'none', 'none', 'none', 'none'],
     rails: ['gap', 'gap', 'full', 'full', 'full', 'full'],
     type: 'house'
   },
@@ -73,7 +74,7 @@ let houses = {
     socket: 0,
     dist: 20,
     alt: 23,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    pipes: ['full', 'full', 'full', 'shortl','shortr', 'full'],
     rails: ['full', 'full', 'full', 'gap', 'gap', 'full'],
     type: 'house'
   },
@@ -84,7 +85,7 @@ let houses = {
     from1: 'D1',
     socket1: 4,
     alt: 25,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    pipes: ['full', 'shortl', 'none', 'medr', 'full', 'valver'],
     rails: ['full', 'gap', 'full', 'gap', 'full', 'gap'],
     type: 'plat'
   },
@@ -93,7 +94,7 @@ let houses = {
     socket: 5,
     dist: 11,
     alt: 28,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    pipes: ['medl', 'shortr', 'valvel', 'full', 'full', 'full'],
     rails: ['gap', 'gap', 'gap', 'full', 'full', 'full'],
     type: 'house'
   },
@@ -111,7 +112,7 @@ let houses = {
     socket: 0,
     dist: 22,
     alt: 40,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    pipes: ['none', 'shortr', 'full', 'shortl', 'none', 'none'],
     rails: ['full', 'gap', 'full', 'gap', 'full', 'full'],
     type: 'house'
   },
@@ -120,7 +121,7 @@ let houses = {
     socket: 1,
     dist: 18,
     alt: 45,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    pipes: ['full', 'medl', 'shortr', 'full', 'valvel', 'full'],
     rails: ['full', 'gap', 'gap', 'full', 'gap', 'gap'],
     type: 'plat'
   },
@@ -138,7 +139,7 @@ let houses = {
     socket: 1,
     dist: 12.5,
     alt: 50,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    pipes: ['none', 'none', 'shortr', 'full', 'shortl', 'none'],
     rails: ['full', 'full', 'gap', 'full', 'gap', 'full'],
     type: 'house'
   },
@@ -147,7 +148,7 @@ let houses = {
     socket: 2,
     dist: 25,
     alt: 55,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    pipes: ['medl', 'none', 'none', 'none', 'none', 'medr'],
     rails: ['gap', 'full', 'full', 'full', 'full', 'gap'],
     type: 'house'
   },
@@ -158,7 +159,7 @@ let houses = {
     from1: 'K',
     socket1: 2,
     alt: 53,
-    pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+    pipes: ['none', 'none', 'none', 'medr', 'valver', 'shortl'],
     rails: ['full', 'full', 'full', 'gap', 'gap', 'gap'],
     type: 'plat'
   },
@@ -174,7 +175,7 @@ let houses = {
 }
 
 for (let houseKey of Object.keys(houses)) {
-  let houseSpec = houses[houseKey];
+  let houseSpec: HouseSpec = houses[houseKey];
   houseSpec.bridges = [];
   
   if (houseSpec.from === 'ground') {
@@ -250,31 +251,49 @@ for (let houseKey of Object.keys(houses)) {
 
 // Create the big trees!
 let trees = [
-  
-  {
-    pos: new Vector3(13, 35, 30),
-    rot: Quaternion.Euler(0, 60, 0),
-    trunk: 'trunk3',
-    houses: [
+  new Tree(
+    'trunk3',
+    new Transform({
+      position: new Vector3(13, 35, 30),
+      rotation: Quaternion.Euler(0, 60, 0)
+    }),
+    [
       {
-        centerPos: new Vector3(14, houses.B0.house.getPos().y - 10, 30),
-        treehousePos: houses.B0.house.getPos()
+        centerPos: new Vector3(14, houses.B0.house.getPos().y - 10, 32),
+        treehousePos: houses.B0.house.getPos(),
+        scale: 1
       }
     ],
-    foliage: [
+    [
+      /*
       {
         centerPos: new Vector3(14, 30, 30),
         folPos: new Vector3(9, 35, 40)
       }
+      */
     ]
-  },
+  ),
+  new Tree(
+    'trunk2',
+    new Transform({
+      position: new Vector3(26, 35, 21.5),
+      rotation: Quaternion.Euler(0, 0, 0)
+    }),
+    [
+      {
+        centerPos: new Vector3(26.4, houses.C.house.getPos().y - 15, 22),
+        treehousePos: houses.C.house.getPos(),
+        scale: 0.5
+      },
+      {
+        centerPos: new Vector3(25.5, houses.D0.house.getPos().y - 8, 21),
+        treehousePos: houses.D0.house.getPos(),
+        scale: 0.4
+      }
+    ],
+    []
+  ),
   /*
-  {
-    pos: new Vector3(26, 35, 20),
-    rot: Quaternion.Euler(0, 0, 0),
-    trunk: 'trunk2',
-    houses: []
-  },
   {
     pos: new Vector3(30, 35, 8),
     rot: Quaternion.Euler(0, 90, 0),
@@ -313,23 +332,10 @@ let trees = [
   },
   */
 ];
-
-for (let i = 0; i < trees.length; i++) {
-  let size = Math.random() * 20 + 60;
-  let tree = new Tree(
-    trees[i].trunk,
-    new Transform({
-      position: trees[i].pos,
-      rotation: trees[i].rot
-    }),
-    trees[i].houses,
-    trees[i].foliage
-  );
-}
-
+/*
 // Create the small trees!
 let humanoidTreeLocations = [
-  new Vector3(7, 0, 40),
+  new Vector3(7, 10, 40),
   new Vector3(22, 0, 6),
   new Vector3(36, 0, 28),
   new Vector3(43, 0, 19),
@@ -348,7 +354,7 @@ for (let i = 0; i < humanoidTreeLocations.length; i++) {
     i
   );
 }
-
+*/
 
 //Create UI (journal pages)
 let ui = new UI([

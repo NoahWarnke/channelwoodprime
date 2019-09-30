@@ -8,8 +8,8 @@ export class Treehouse {
     shortr: new GLTFShape('models/pipes/pipe_edge_short_r.glb'),      // just 1/4 right pipe
     medl: new GLTFShape('models/pipes/pipe_edge_med_l.glb'),          // just 3/4 left pipe
     medr: new GLTFShape('models/pipes/pipe_edge_med_r.glb'),          // just 3/4 right pipe
-    valvel: new GLTFShape('models/pipes/pipe_edge_w_valve_a.glb'),// full pipe with left valve
-    valver: new GLTFShape('models/pipes/pipe_edge_w_valve_b.glb'),// full pipe with right valve
+    valver: new GLTFShape('models/pipes/pipe_edge_w_valve_a.glb'),// full pipe with left valve
+    valvel: new GLTFShape('models/pipes/pipe_edge_w_valve_b.glb'),// full pipe with right valve
   };
   
   static railShapes: {[index: string] : GLTFShape} = {
@@ -40,14 +40,13 @@ export class Treehouse {
     house.setParent(root);
     
     // Treehand. Easier to attach it here than to the tree.
-    /*
     let hand = new Entity();
-    hand.addComponent(new GLTFShape('models/trees/hand_v2.glb'));
+    hand.addComponent(new GLTFShape('models/trees/hand_v5.glb'));
     hand.addComponent(new Transform({
-      //rotation:  Quaternion.Euler(0, 30, 0)
+      rotation:  Quaternion.Euler(0, Math.random() * 360, 0),
+      scale: new Vector3(0.6, 0.6, 0.6)
     }));
     hand.setParent(root);
-    */
     
     // Load the pipes
     for (let i = 0; i < 6; i++) {

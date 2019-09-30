@@ -6,12 +6,17 @@ export class Tree {
     trunk3: new GLTFShape('models/trees/trunk3_v2.glb'),
     trunk4: new GLTFShape('models/trees/trunk4_v2.glb'),
     trunk5: new GLTFShape('models/trees/trunk5_v2.glb'),
-    forearm: new GLTFShape('models/trees/forearm_v2.glb'),
-    upperarm: new GLTFShape('models/trees/upperarm_v2.glb'),
+    forearm: new GLTFShape('models/trees/forearm_v3.glb'),
+    upperarm: new GLTFShape('models/trees/upperarm_v3.glb'),
     fol1: new GLTFShape('models/trees/foliage1.glb')
   }
   
-  constructor(trunkName: string, transform: Transform, treehousePositions: {centerPos: Vector3, treehousePos: Vector3}[], foliagePositions: {centerPos: Vector3, folPos: Vector3}[]) {
+  constructor(
+    trunkName: string,
+    transform: Transform,
+    treehousePositions: {centerPos: Vector3, treehousePos: Vector3, scale: number}[],
+    foliagePositions: {centerPos: Vector3, folPos: Vector3}[]
+  ) {
     
     let treeCenter = transform.position.clone();
     treeCenter.y -= 36;
@@ -21,25 +26,31 @@ export class Tree {
     tree.addComponent(Tree.shapes[trunkName]);
     
     for (var i = 0; i < treehousePositions.length; i++) {
-      this.addBranch(treehousePositions[i].centerPos, treehousePositions[i].treehousePos);
+      this.addBranch(treehousePositions[i].centerPos, treehousePositions[i].treehousePos, treehousePositions[i].scale);
     }
     
     for (var i = 0; i < foliagePositions.length; i++) {
-      this.addBranch(foliagePositions[i].centerPos, foliagePositions[i].folPos.subtract(new Vector3(0, 5, 0)));
+      this.addBranch(foliagePositions[i].centerPos, foliagePositions[i].folPos.subtract(new Vector3(0, 5, 0)), 1);
       this.addFoliage(foliagePositions[i].folPos);
     }
     
     engine.addEntity(tree);
   }
   
-  public addBranch(start: Vector3, end: Vector3) {
+  public addBranch(start: Vector3, end: Vector3, scale: number) {
+    
+    end = end.clone()
+    end.y -= 1; //Adjustment from treehouse center to wrist center pt.
     
     // Distance.
     let offset = end.clone().subtract(start);
     let dist = offset.length();
     
-    if (dist > 17) {
+    if (dist > 18) {
       log ('Invalid tree arm! ' + dist);
+      log(start);
+      log(end);
+      log('/');
       return;
     }
     
@@ -54,25 +65,24 @@ export class Tree {
     log ("xya: " + xya * 180 / Math.PI);
     
     // Angle
-    let a = Math.acos(dist / 17) // two arm pieces, each 8.5m long, are the hypotenuse of two triangles
+    let a = Math.acos(dist / 18) // two arm pieces, each 8.5m long, are the hypotenuse of two triangles
     log ("a: " + a * 180 / Math.PI);
     
     // Pivot point around which elbow point rotates
     let elbowPt = new Vector3(Math.cos(xza) * Math.cos(xya - a), Math.sin(xya - a), Math.sin(xza) * Math.cos(xya - a));
-    elbowPt.scaleInPlace(8.5);
+    elbowPt.scaleInPlace(9);
     elbowPt.addInPlace(start);
     
     log (elbowPt);
     
     // Transforms:
     let upperTransf = new Transform({position: start});
-    upperTransf.lookAt(elbowPt);
-    upperTransf.rotation.conjugateInPlace();
+    upperTransf.lookAt(new Vector3(start.x * 2 - elbowPt.x, start.y * 2 - elbowPt.y, start.z * 2 - elbowPt.z)); // would be just elbowPt but the branch is backwards.
+    upperTransf.scale.set(scale, scale, 1);
     
     let lowerTransf = new Transform({position: elbowPt});
-    lowerTransf.lookAt(end);
-    //lowerTransf.rotation.conjugateInPlace();
-    lowerTransf.scale.set(0.1, 0.1, 8.5);
+    lowerTransf.lookAt(new Vector3(elbowPt.x * 2 - end.x, elbowPt.y * 2 - end.y, elbowPt.z * 2 - end.z)); // would be just end but the branch is backwards.
+    lowerTransf.scale.set(scale, scale, 1);
     
     // entities
     let upper = new Entity();
@@ -81,7 +91,7 @@ export class Tree {
     engine.addEntity(upper);
     
     let fore = new Entity();
-    fore.addComponent(/*Tree.shapes.forearm*/ new CylinderShape());
+    fore.addComponent(Tree.shapes.forearm);
     fore.addComponent(lowerTransf);
     engine.addEntity(fore);
   }
