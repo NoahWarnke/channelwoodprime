@@ -138,7 +138,7 @@ class SingleParticleFloating extends SingleParticle {
         this.transform.scale.setAll(0)
         this.isAlive = true
 
-        log("ACTIVATED", this.isAlive)
+        //log("ACTIVATED", this.isAlive)
 
         this.velocity = new Vector3(
             (Math.random() - Math.random()) * 0.01,
