@@ -52,44 +52,60 @@ export class TreeBuilder {
         ],
         []
       ),
-      /*
-      {
-        pos: new Vector3(30, 35, 8),
-        rot: Quaternion.Euler(0, 90, 0),
-        trunk: 'trunk4',
-        houses: []
-      },
-      {
-        pos: new Vector3(38, 35, 36),
-        rot: Quaternion.Euler(0, 50, 0),
-        trunk: 'trunk4',
-        houses: []
-      },
-      {
-        pos: new Vector3(51, 35, 33),
-        rot: Quaternion.Euler(0, 290, 0),
-        trunk: 'trunk5',
-        houses: []
-      },
-      {
-        pos: new Vector3(52, 48, 13),
-        rot: Quaternion.Euler(0, 90, 0),
-        trunk: 'trunk3',
-        houses: []
-      },
-      {
-        pos: new Vector3(67, 35, 11),
-        rot: Quaternion.Euler(0, 0, 0),
-        trunk: 'trunk2',
-        houses: []
-      },
-      {
-        pos: new Vector3(67, 35, 32),
-        rot: Quaternion.Euler(0, 15, 0),
-        trunk: 'trunk2',
-        houses: []
-      },
-      */
+      new Tree(
+        'trunk4',
+        new Transform({
+          position: new Vector3(30, 35, 8),
+          rotation: Quaternion.Euler(0, 90, 0)
+        }),
+        [],
+        []
+      ),
+      new Tree(
+        'trunk4',
+        new Transform({
+          position: new Vector3(38, 35, 36),
+          rotation: Quaternion.Euler(0, 50, 0)
+        }),
+        [],
+        []
+      ),
+      new Tree(
+        'trunk5',
+        new Transform({
+          position: new Vector3(51, 35, 33),
+          rotation: Quaternion.Euler(0, 290, 0)
+        }),
+        [],
+        []
+      ),
+      new Tree(
+        'trunk3',
+        new Transform({
+          position: new Vector3(52, 48, 13),
+          rotation: Quaternion.Euler(0, 90, 0)
+        }),
+        [],
+        []
+      ),
+      new Tree(
+        'trunk2',
+        new Transform({
+          position: new Vector3(67, 35, 11),
+          rotation: Quaternion.Euler(0, 0, 0)
+        }),
+        [],
+        []
+      ),
+      new Tree(
+        'trunk2',
+        new Transform({
+          position: new Vector3(67, 35, 32),
+          rotation: Quaternion.Euler(0, 15, 0)
+        }),
+        [],
+        []
+      )
     ];
   }
 }
