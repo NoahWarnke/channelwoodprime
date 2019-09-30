@@ -1,5 +1,6 @@
 import {Ground} from 'scenery/ground';
 import {Tree} from 'scenery/tree';
+import {TreeBuilder} from 'scenery/treebuilder';
 import {HumanoidTree} from 'scenery/humanoidtree';
 import {Treehouse} from 'scenery/treehouse';
 import {HouseSpec} from 'scenery/housespec';
@@ -22,7 +23,7 @@ let windmill = new Windmill(
   })
 );
 
-let houses: {[index: string]: HouseSpec} = {
+let houseSpecs: {[index: string]: HouseSpec} = {
   'A': {
     from: 'ground',
     ground: new Vector3(14, 1.4, 17),
@@ -172,14 +173,16 @@ let houses: {[index: string]: HouseSpec} = {
     rails: ['full', 'gap', 'full', 'full', 'full', 'full'],
     type: 'house'
   },
-}
+};
 
-for (let houseKey of Object.keys(houses)) {
-  let houseSpec: HouseSpec = houses[houseKey];
-  houseSpec.bridges = [];
+let houses: {[index: string]: Treehouse} = {};
+let bridges: Bridge[] = [];
+
+for (let houseKey of Object.keys(houseSpecs)) {
+  let houseSpec: HouseSpec = houseSpecs[houseKey];
   
   if (houseSpec.from === 'ground') {
-    houseSpec.house = new Treehouse(
+    houses[houseKey] = new Treehouse(
       new Transform({
         position: Treehouse.reachFromPos(
           houseSpec.ground,
@@ -192,18 +195,18 @@ for (let houseKey of Object.keys(houses)) {
       houseSpec.rails,
       houseSpec.type
     );
-    houseSpec.bridges.push(new Bridge(
+    bridges.push(new Bridge(
       houseSpec.ground,
-      houseSpec.house.getSocketPos((houseSpec.socket + 3) % 6),
+      houses[houseKey].getSocketPos((houseSpec.socket + 3) % 6),
       0
     ));
   }
   else if (houseSpec.from === 'two') {
-    houseSpec.house = new Treehouse(
+    houses[houseKey] = new Treehouse(
       new Transform({
-        position: houses[houseSpec.from0].house.intersect(
+        position: houses[houseSpec.from0].intersect(
           houseSpec.socket0,
-          houses[houseSpec.from1].house,
+          houses[houseSpec.from1],
           houseSpec.socket1,
           houseSpec.alt
         )
@@ -212,21 +215,21 @@ for (let houseKey of Object.keys(houses)) {
       houseSpec.rails,
       houseSpec.type
     );
-    houseSpec.bridges.push(new Bridge(
-      houses[houseSpec.from0].house.getSocketPos(houseSpec.socket0),
-      houseSpec.house.getSocketPos((houseSpec.socket0 + 3) % 6),
+    bridges.push(new Bridge(
+      houses[houseSpec.from0].getSocketPos(houseSpec.socket0),
+      houses[houseKey] .getSocketPos((houseSpec.socket0 + 3) % 6),
       0
     ));
-    houseSpec.bridges.push(new Bridge(
-      houses[houseSpec.from1].house.getSocketPos(houseSpec.socket1),
-      houseSpec.house.getSocketPos((houseSpec.socket1 + 3) % 6),
+    bridges.push(new Bridge(
+      houses[houseSpec.from1].getSocketPos(houseSpec.socket1),
+      houses[houseKey].getSocketPos((houseSpec.socket1 + 3) % 6),
       0
     ));
   }
   else {
-     houseSpec.house = new Treehouse(
+     houses[houseKey] = new Treehouse(
       new Transform({
-        position: houses[houseSpec.from].house.reach(
+        position: houses[houseSpec.from].reach(
           houseSpec.socket,
           houseSpec.dist,
           houseSpec.alt
@@ -237,9 +240,9 @@ for (let houseKey of Object.keys(houses)) {
       houseSpec.type
     );
 
-    houseSpec.bridges.push(new Bridge(
-      houses[houseSpec.from].house.getSocketPos(houseSpec.socket),
-      houseSpec.house.getSocketPos((houseSpec.socket + 3) % 6),
+    bridges.push(new Bridge(
+      houses[houseSpec.from].getSocketPos(houseSpec.socket),
+      houses[houseKey].getSocketPos((houseSpec.socket + 3) % 6),
       0
     ));
   }
@@ -249,93 +252,14 @@ for (let houseKey of Object.keys(houses)) {
 // Create our puzzles!
 //let manager = new Manager();
 
-// Create the big trees!
-let trees = [
-  new Tree(
-    'trunk3',
-    new Transform({
-      position: new Vector3(13, 35, 30),
-      rotation: Quaternion.Euler(0, 60, 0)
-    }),
-    [
-      {
-        centerPos: new Vector3(14, houses.B0.house.getPos().y - 10, 32),
-        treehousePos: houses.B0.house.getPos(),
-        scale: 1
-      }
-    ],
-    [
-      /*
-      {
-        centerPos: new Vector3(14, 30, 30),
-        folPos: new Vector3(9, 35, 40)
-      }
-      */
-    ]
-  ),
-  new Tree(
-    'trunk2',
-    new Transform({
-      position: new Vector3(26, 35, 21.5),
-      rotation: Quaternion.Euler(0, 0, 0)
-    }),
-    [
-      {
-        centerPos: new Vector3(26.4, houses.C.house.getPos().y - 15, 22),
-        treehousePos: houses.C.house.getPos(),
-        scale: 0.5
-      },
-      {
-        centerPos: new Vector3(25.5, houses.D0.house.getPos().y - 8, 21),
-        treehousePos: houses.D0.house.getPos(),
-        scale: 0.4
-      }
-    ],
-    []
-  ),
-  /*
-  {
-    pos: new Vector3(30, 35, 8),
-    rot: Quaternion.Euler(0, 90, 0),
-    trunk: 'trunk4',
-    houses: []
-  },
-  {
-    pos: new Vector3(38, 35, 36),
-    rot: Quaternion.Euler(0, 50, 0),
-    trunk: 'trunk4',
-    houses: []
-  },
-  {
-    pos: new Vector3(51, 35, 33),
-    rot: Quaternion.Euler(0, 290, 0),
-    trunk: 'trunk5',
-    houses: []
-  },
-  {
-    pos: new Vector3(52, 48, 13),
-    rot: Quaternion.Euler(0, 90, 0),
-    trunk: 'trunk3',
-    houses: []
-  },
-  {
-    pos: new Vector3(67, 35, 11),
-    rot: Quaternion.Euler(0, 0, 0),
-    trunk: 'trunk2',
-    houses: []
-  },
-  {
-    pos: new Vector3(67, 35, 32),
-    rot: Quaternion.Euler(0, 15, 0),
-    trunk: 'trunk2',
-    houses: []
-  },
-  */
-];
-/*
+// Create our trees!
+let treeBuilder = new TreeBuilder();
+treeBuilder.build(houses);
+
+
 // Create the small trees!
 let humanoidTreeLocations = [
-  new Vector3(7, 10, 40),
+  new Vector3(7, 0, 40),
   new Vector3(22, 0, 6),
   new Vector3(36, 0, 28),
   new Vector3(43, 0, 19),
@@ -354,20 +278,20 @@ for (let i = 0; i < humanoidTreeLocations.length; i++) {
     i
   );
 }
-*/
+
 
 //Create UI (journal pages)
 let ui = new UI([
     new Vector3(11.4, 4.6, 12.05),
-    houses.A.house.getPos(),
-    houses.B1.house.getPos(),
-    houses.C.house.getPos(),
-    houses.D0.house.getPos(),
-    houses.F.house.getPos(),
-    houses.H.house.getPos(),
-    houses.J.house.getPos(),
-    houses.M.house.getPos(),
-    houses.N.house.getPos()
+    houses.A.getPos(),
+    houses.B1.getPos(),
+    houses.C.getPos(),
+    houses.D0.getPos(),
+    houses.F.getPos(),
+    houses.H.getPos(),
+    houses.J.getPos(),
+    houses.M.getPos(),
+    houses.N.getPos()
 ]);
 
 //Add fairy dust particles if needed

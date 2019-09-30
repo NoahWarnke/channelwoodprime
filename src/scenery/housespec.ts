@@ -14,6 +14,4 @@ export class HouseSpec {
   pipes: string[];
   rails: string[];
   type: string;
-  house?: Treehouse;
-  bridges?: Bridge[];
 };
