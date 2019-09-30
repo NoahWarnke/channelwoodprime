@@ -11,18 +11,20 @@ export class TreeBuilder {
     // Create the big trees!
     let trees = [
       new Tree(
-        'trunk3',
-        new Transform({
+        'trunk3', // Put trunk2 - trunk5
+        new Transform({ // Transform for the trunk
           position: new Vector3(13, 35, 30),
           rotation: Quaternion.Euler(0, 60, 0)
         }),
+        // Array of treehouse branch positions
         [
           {
-            centerPos: new Vector3(14, houses.B0.getPos().y - 10, 32),
-            treehousePos: houses.B0.getPos(),
-            scale: 1
+            centerPos: new Vector3(14, houses.B0.getPos().y - 10, 32), // Starting point of the branch (the shoulder)
+            treehousePos: houses.B0.getPos(),                          // Ending point of the branch (wrist) - should be treehosue position!
+            scale: 1                                                   // Scale (1 = the native beefy thick branch. Just scales the diameter of the branch, not length.)
           }
         ],
+        // Array of foliage branch positions. Same drill as above, except here, you can pick the foliage position to be wherever you want.
         [
           {
             centerPos: new Vector3(13, 30, 32),
