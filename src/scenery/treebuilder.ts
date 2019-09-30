@@ -27,6 +27,7 @@ export class TreeBuilder {
         // Array of foliage branch positions. Same drill as above, except here, you can pick the foliage position to be wherever you want.
         [
           {
+            folType: 'fol11',  // Pick a foliage type. 1-11.
             centerPos: new Vector3(13, 30, 32),
             folPos: new Vector3(9, 35, 40),
             scale: 0.3

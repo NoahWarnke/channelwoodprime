@@ -8,14 +8,24 @@ export class Tree {
     trunk5: new GLTFShape('models/trees/trunk5_v2.glb'),
     forearm: new GLTFShape('models/trees/forearm_v3.glb'),
     upperarm: new GLTFShape('models/trees/upperarm_v3.glb'),
-    fol1: new GLTFShape('models/trees/foliage1.glb')
+    fol1: new GLTFShape('models/trees/foliage1.glb'),
+    fol2: new GLTFShape('models/trees/foliage2.glb'),
+    fol3: new GLTFShape('models/trees/foliage3.glb'),
+    fol4: new GLTFShape('models/trees/foliage4.glb'),
+    fol5: new GLTFShape('models/trees/foliage5.glb'),
+    fol6: new GLTFShape('models/trees/foliage6.glb'),
+    fol7: new GLTFShape('models/trees/foliage7.glb'),
+    fol8: new GLTFShape('models/trees/foliage8.glb'),
+    fol9: new GLTFShape('models/trees/foliage9.glb'),
+    fol10: new GLTFShape('models/trees/foliage10.glb'),
+    fol11: new GLTFShape('models/trees/foliage11.glb')
   }
   
   constructor(
     trunkName: string,
     transform: Transform,
     treehousePositions: {centerPos: Vector3, treehousePos: Vector3, scale: number}[],
-    foliagePositions: {centerPos: Vector3, folPos: Vector3, scale: number}[]
+    foliagePositions: {folType: string, centerPos: Vector3, folPos: Vector3, scale: number}[]
   ) {
     
     let treeCenter = transform.position.clone();
@@ -31,7 +41,7 @@ export class Tree {
     
     for (var i = 0; i < foliagePositions.length; i++) {
       this.addBranch(foliagePositions[i].centerPos, foliagePositions[i].folPos.subtract(new Vector3(0, 2, 0)), foliagePositions[i].scale);
-      this.addFoliage(foliagePositions[i].folPos);
+      this.addFoliage(foliagePositions[i].folPos, foliagePositions[i].folType);
     }
     
     engine.addEntity(tree);
@@ -89,9 +99,9 @@ export class Tree {
     engine.addEntity(fore);
   }
   
-  public addFoliage(pos: Vector3) {
+  public addFoliage(pos: Vector3, shape: string) {
     let foliage = new Entity();
-    foliage.addComponent(Tree.shapes.fol1)
+    foliage.addComponent(Tree.shapes[shape])
     foliage.addComponent(new Transform({
       position: pos,
       scale: new Vector3(0.5, 0.5, 0.5)
