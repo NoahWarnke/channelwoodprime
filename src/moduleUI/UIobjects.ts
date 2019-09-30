@@ -135,26 +135,27 @@ for (let i = 0; i < 10; i++) {
 }
 const journalPage = {
     pages: pages,
-    closeBtn: new SingleUI(rectPage, UIresources.texture.iconClose, 0, 0, 64, 64, 48, 48, 350, -10)
+    closeBtn: new SingleUI(rectPage, UIresources.texture.journalBackground,
+        48, 475, 48, 48, 64, 64, 350, -10)
 }
 
 //create background for journal
-const journalBackground = new SingleUI(rectJournal, UIresources.texture.journalBackground, 0, 0,
-    512, 512, 950, 600, 425, 0)
+const journalBackground = new SingleUI(rectJournal, UIresources.texture.journalBackground,
+    0, 0, 512, 475, 920, 550, 425, -5)
 
 //create thumbnail pages for journal
-let xOffset: number = 507
-let yOffset: number = -100
-let scale: number = 0.28
+let xOffset: number = 460
+let yOffset: number = -60
+let scale: number = 0.3
 const journalThumbnail: SingleUI[] = []
 for (let i = 0; i < 10; i += 1) {
     journalThumbnail.push(
         new SingleUI(rectJournal, UIresources.texture.journalBlocker,
             0, 0, 512, 512,
             512 * scale,
-            625 * scale,
-            ((i) % 5) * 155 + xOffset,
-            (Math.floor((i) / 5)) * -205 + yOffset)
+            700 * scale,
+            ((i) % 5) * 175 + xOffset,
+            (Math.floor((i) / 5)) * -230 + yOffset)
     )
     //journalThumbnail[i].show()
 }
@@ -162,10 +163,12 @@ const JournalSummary = {
     parent: rectJournal,
     background: journalBackground,
     journalThumbnail: journalThumbnail,
-    closeBtn: new SingleUI(rectJournal, UIresources.texture.iconClose, 0, 0, 64, 64, 48, 48, 350, -10)
+    closeBtn: new SingleUI(rectJournal, UIresources.texture.journalBackground,
+        48, 475, 48, 48, 64, 64, 350, -10)
 }
 
-let journalSummaryBtn = new SingleUI(rectIcon, UIresources.texture.iconJournalSummary, 0, 0, 64, 64, 64, 64, 450, -650)
+let journalSummaryBtn = new SingleUI(rectIcon, UIresources.texture.journalBackground,
+    0, 475, 48, 48, 64, 64, 450, -650)
 //let audioBtnOn = new SingleUI(rectIcon, UIresources.texture.iconAudioOn, 0, 0, 64, 64, 64, 64, 600, -650)
 //let audioBtnOff = new SingleUI(rectIcon, UIresources.texture.iconAudioOff, 0, 0, 64, 64, 64, 64, 600, -650)
 //audioBtnOff.uiImage.visible = false

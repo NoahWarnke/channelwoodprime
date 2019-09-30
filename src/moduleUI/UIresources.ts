@@ -2,35 +2,35 @@ export default {
     texture: {
         //JOURNAL IMAGE
         pageTexture: [
-            new Texture("images/UI/Page1.png"),
-            new Texture("images/UI/Page2.png"),
-            new Texture("images/UI/Page3.png"),
-            new Texture("images/UI/Page4.png"),
-            new Texture("images/UI/Page5.png"),
-            new Texture("images/UI/Page6.png"),
-            new Texture("images/UI/Page7.png"),
-            new Texture("images/UI/Page8.png"),
-            new Texture("images/UI/Page9.png"),
-            new Texture("images/UI/Page10.png")
+            new Texture("models/journalPage/page1.png"),
+            new Texture("models/journalPage/page2.png"),
+            new Texture("models/journalPage/page3.png"),
+            new Texture("models/journalPage/page4.png"),
+            new Texture("models/journalPage/page5.png"),
+            new Texture("models/journalPage/page6.png"),
+            new Texture("models/journalPage/page7.png"),
+            new Texture("models/journalPage/page8.png"),
+            new Texture("models/journalPage/page9.png"),
+            new Texture("models/journalPage/page10.png")
         ],
 
-        journalBackground: new Texture("images/UI/JournalBackground.png"),
-        journalBlocker: new Texture("images/UI/JournalBlocker.png"),
+        journalBackground: new Texture("models/journalPage/JournalBackground.png"),
+        journalBlocker: new Texture("models/journalPage/JournalBlocker.png"),
 
         //GENERAL SETTING & INFO
         //iconJournalCurrent: new Texture("images/UI/Icon_Journal_Current.png"),
-        iconJournalSummary: new Texture("images/UI/Icon_Journal_Summary.png"),
-        iconAudioOn: new Texture("images/UI/Icon_Audio_ON.png"),
-        iconAudioOff: new Texture("images/UI/Icon_Audio_OFF.png"),
+        //iconJournalSummary: new Texture("models/journalPage/Icon_Journal_Summary32.png"),
+        //iconAudioOn: new Texture("images/UI/Icon_Audio_ON.png"),
+        //iconAudioOff: new Texture("images/UI/Icon_Audio_OFF.png"),
         //iconSave: new Texture("images/UI/Icon_Save.png"),
 
         //JOURNAL PAGE CONTROL
-        iconClose: new Texture("images/UI/Icon_Close.png"),
+        //iconClose: new Texture("models/journalPage/Icon_Close32.png"),
         //iconPrev: new Texture("images/UI/Icon_Prev.png"),
         //iconNext: new Texture("images/UI/Icon_Next.png"),
 
         //HELPER
-        helperLeftRight: new Texture("images/UI/Icon_LeftRight.png")
+        //helperLeftRight: new Texture("images/UI/Icon_LeftRight.png")
     },
     //3D MODEL
     model: {
