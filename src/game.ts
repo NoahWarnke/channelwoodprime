@@ -1,9 +1,9 @@
 import {Ground} from 'scenery/ground';
 import {TreeBuilder} from 'scenery/treebuilder';
 import {HouseAndBridgeBuilder} from 'scenery/houseandbridgebuilder';
+import {PuzzleBuilder} from 'puzzlestate/puzzlebuilder';
 import {HumanoidTree} from 'scenery/humanoidtree';
 import {Windmill} from 'scenery/windmill'
-import {Manager} from 'stateengine/manager';
 import {UI} from 'moduleUI/ui';
 import {ParticleScenes} from 'particle/particleSys';
 import {AudioAmbient, AudioWindmill} from 'sceneaudio/sceneAudio';
@@ -18,10 +18,13 @@ let windmill = new Windmill();
 let houseAndBridgeBuilder = new HouseAndBridgeBuilder();
 let houses = houseAndBridgeBuilder.build();
 
+// Create our puzzles!
+let puzzleBuilder = new PuzzleBuilder(houses);
+puzzleBuilder.build();
+
 // Create our trees!
 let treeBuilder = new TreeBuilder();
 treeBuilder.build(houses);
-
 
 // Create the small trees!
 let humanoidTreeLocations = [
@@ -49,17 +52,18 @@ for (let i = 0; i < humanoidTreeLocations.length; i++) {
 //let manager = new Manager();
 
 //Create UI (journal pages)
+
 let ui = new UI([
-    new Vector3(11.4, 4.6, 12.05),
-    houses.A.getPos(),
-    houses.B1.getPos(),
-    houses.C.getPos(),
-    houses.D0.getPos(),
-    houses.F.getPos(),
-    houses.H.getPos(),
-    houses.J.getPos(),
-    houses.M.getPos(),
-    houses.N.getPos()
+  new Vector3(11.4, 4.6, 12.05),
+  houses.A.getPos(),
+  houses.B1.getPos(),
+  houses.C.getPos(),
+  houses.D0.getPos(),
+  houses.F.getPos(),
+  houses.H.getPos(),
+  houses.J.getPos(),
+  houses.M.getPos(),
+  houses.N.getPos()
 ]);
 
 //Add fairy dust particles if needed
@@ -69,12 +73,9 @@ const pS = new ParticleScenes();
 let audioWindmill = new AudioWindmill()
 let audioAmbient = new AudioAmbient()
 
-
-
 // Instance the input object
+/*
 const input = Input.instance
-
-// button down event
 input.subscribe("BUTTON_DOWN", ActionButton.POINTER, false, e => {
   
   log('pointer down');
@@ -99,3 +100,4 @@ input.subscribe("BUTTON_DOWN", ActionButton.POINTER, false, e => {
       }
   })
 })
+*/

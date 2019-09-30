@@ -41,7 +41,7 @@ export class HouseAndBridgeBuilder {
         dist: 16,
         alt: 15,
         frommodule0: 'posts',
-        frommodule1: 'posts',
+        frommodule1: 'gate',
         pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
         rails: ['full', 'full', 'full', 'gap', 'full', 'full'],
         type: 'house'
