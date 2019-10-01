@@ -14,3 +14,8 @@
 - _day-ambience.mp3_ (https://freesound.org/people/hz37/sounds/372612/)
 - _night-ambience.mp3_ (https://freesound.org/people/brunoboselli/sounds/459675/)
 - _windmill-loop.ogg_ (https://freesound.org/people/FonotecadeCanarias/sounds/210936/)
+
+## FIXES
+
+- Tidied up gate UVs
+- 
