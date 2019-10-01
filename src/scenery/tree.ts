@@ -40,7 +40,7 @@ export class Tree {
     }
     
     for (var i = 0; i < foliagePositions.length; i++) {
-      this.addBranch(foliagePositions[i].centerPos, foliagePositions[i].folPos.subtract(new Vector3(0, 2, 0)), foliagePositions[i].scale);
+      this.addBranch(foliagePositions[i].centerPos, foliagePositions[i].folPos.subtract(new Vector3(0, 0, 0)), foliagePositions[i].scale);
       this.addFoliage(foliagePositions[i].folPos, foliagePositions[i].folType);
     }
     
