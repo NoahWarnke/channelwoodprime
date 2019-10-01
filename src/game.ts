@@ -103,14 +103,32 @@ input.subscribe("BUTTON_DOWN", ActionButton.POINTER, false, e => {
 const eyeballs = new Entity()
 eyeballs.addComponent(new GLTFShape("models/trees/eyeballs.glb"))
 eyeballs.addComponent(new Transform({
-  position: new Vector3(houses.N.getPos().x, houses.N.getPos().y, houses.N.getPos().z) 
+  position: new Vector3(houses.N.getPos().x - 1.2, houses.N.getPos().y + 2.25, houses.N.getPos().z - 6),
+  rotation: Quaternion.Euler(0, -90, 0) 
 }))
+
+// Eyes animation
+let animator = new Animator()
+eyeballs.addComponent(animator)
+const eyesOpening = new AnimationState("eyesOpening")
+eyesOpening.looping = false
+eyesOpening.reset()
+
+// Add animation clip to Animator component
+animator.addClip(eyesOpening)
+
+eyeballs.addComponent(new OnClick(() => {
+  eyesOpening.play()
+  eyesOpening.reset()
+}))
+
 engine.addEntity(eyeballs)
 
 // Telescope
 const telescope = new Entity()
 telescope.addComponent(new GLTFShape("models/treehouses/telescope.glb"))
 telescope.addComponent(new Transform({
-  position: new Vector3(houses.N.getPos().x, houses.N.getPos().y, houses.N.getPos().z) 
+  position: new Vector3(houses.N.getPos().x + 1, houses.N.getPos().y, houses.N.getPos().z + 1.25),
+  rotation: Quaternion.Euler(0, 150, 0) 
 }))
 engine.addEntity(telescope)
