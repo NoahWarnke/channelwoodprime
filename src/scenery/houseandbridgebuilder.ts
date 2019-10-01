@@ -110,7 +110,7 @@ export class HouseAndBridgeBuilder {
         frommodule0: 'posts',
         frommodule1: 'posts',
         brType: 'withPipe',
-        pipes: ['medl', 'none', 'medr', 'full', 'full', 'full'],
+        pipes: ['shortr', 'full', 'shortl', 'none', 'none', 'none'],
         rails: ['gap', 'gap', 'gap', 'full', 'full', 'full'],
         type: 'house'
       },
@@ -122,7 +122,7 @@ export class HouseAndBridgeBuilder {
         frommodule0: 'posts',
         frommodule1: 'gate',
         brType: 'withoutPipe',
-        pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
+        pipes: ['none', 'none', 'shortr', 'full', 'shortl', 'none'],
         rails: ['full', 'full', 'full', 'full', 'gap', 'full'],
         type: 'plat'
       },

@@ -4,6 +4,7 @@ import {Graph} from 'graph';
 import {Valve} from 'valve';
 import {RealValve} from 'realvalve';
 import {Gate} from 'gate';
+import {PipePath} from '../scenery/pipepath';
 
 /**
  * A builder that creates the pipe-based puzzle state and logic.
@@ -41,7 +42,7 @@ export class PuzzleBuilder {
       w: new Valve('left', undefined, graph.pipes.lw, graph.pipes.wa, false, true, false, graph),
       a: new Valve('left', graph.pipes.ab1, graph.pipes.wa, graph.pipes.ab0c, false, true, false, graph),
       c: new Valve('right', graph.pipes.cd0e, graph.pipes.ab0c, graph.pipes.cd1, false, true, false, graph),
-      d1: new Valve('left', graph.pipes.d1g, graph.pipes.cd1, graph.pipes.d1e, true, false, false, graph),
+      d1: new Valve('left', graph.pipes.d1g, graph.pipes.cd1, graph.pipes.d1e, false, true, false, graph),
       e: new Valve('right', graph.pipes.d1e, graph.pipes.efhi, graph.pipes.cd0e, true, false, true, graph),
       i: new Valve('left', graph.pipes.ijkm, graph.pipes.efhi, graph.pipes.ii, false, true, false, graph),
       m: new Valve('right', graph.pipes.mm, graph.pipes.ijkm, graph.pipes.mn, false, true, false, graph)
@@ -70,6 +71,17 @@ export class PuzzleBuilder {
       lm: new Gate(this.houses.M.incomingBridges['L'].module1, graph.pipes.mm, graph),
       m: new Gate(this.houses.M.outgoingBridges['N'].module0, graph.pipes.mn, graph)
     };
+    
+    // loose pipe
+    let d1gPipe = new PipePath(
+      [
+        new Vector3(41.93, 23.05, 27.356),
+        new Vector3(43.842, 30.037, 23.842)
+        
+      ],
+      false,
+      true
+    )
     
     return graph;
   }
