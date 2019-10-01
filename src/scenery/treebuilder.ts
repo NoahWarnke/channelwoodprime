@@ -32,19 +32,22 @@ export class TreeBuilder {
             folType: 'fol3',
             centerPos: new Vector3(13, 6, 29.5),
             folPos: new Vector3(4, 18, 20),
-            scale: 0.5
+            scale: 0.5,
+            folScale: 0.5
           },
           {
             folType: 'fol1',
             centerPos: new Vector3(13, 30, 32),
             folPos: new Vector3(9.5, 35, 40),
-            scale: 0.4
+            scale: 0.4,
+            folScale: 0.5
           },
           {
             folType: 'fol11',
             centerPos: new Vector3(13.5, 45, 32),
             folPos: new Vector3(13, 60, 25),
-            scale: 0.3
+            scale: 0.3,
+            folScale: 0.6
           },
         ]
       ),
@@ -73,19 +76,22 @@ export class TreeBuilder {
             folType: 'fol2',
             centerPos: new Vector3(28, 4, 20.5),
             folPos: new Vector3(40, 16, 15),
-            scale: 0.55
+            scale: 0.55,
+            folScale: 1
           },
           {
             folType: 'fol4',
             centerPos: new Vector3(26.75, 17, 22.5),
-            folPos: new Vector3(36, 32, 28),
-            scale: 0.4
+            folPos: new Vector3(33, 32, 28),
+            scale: 0.4,
+            folScale: 1
           },
           {
             folType: 'fol6',
             centerPos: new Vector3(25, 32, 21),
             folPos: new Vector3(18, 48, 17),
-            scale: 0.3
+            scale: 0.3,
+            folScale: 1
           },
         ]
       ),
@@ -114,19 +120,22 @@ export class TreeBuilder {
             folType: 'fol3',
             centerPos: new Vector3(29, 8, 8.5),
             folPos: new Vector3(18, 22, 9),
-            scale: 0.4
+            scale: 0.4,
+            folScale: 0.6
           },
           {
             folType: 'fol6',
             centerPos: new Vector3(31, 36, 8),
             folPos: new Vector3(40, 51, 4),
-            scale: 0.35
+            scale: 0.35,
+            folScale: 0.5
           },
           {
             folType: 'fol9',
             centerPos: new Vector3(30, 55, 9.5),
             folPos: new Vector3(31, 70, 15),
-            scale: 0.25
+            scale: 0.25,
+            folScale: 1.5
           },
         ]
       ),
@@ -153,21 +162,24 @@ export class TreeBuilder {
         [
           {
             folType: 'fol4',
-            centerPos: new Vector3(38.75, 6, 36),
-            folPos: new Vector3(48, 19, 36),
-            scale: 0.4
+            centerPos: new Vector3(38.75, 9, 36),
+            folPos: new Vector3(50, 23, 36),
+            scale: 0.4,
+            folScale: 1
           },
           {
             folType: 'fol7',
             centerPos: new Vector3(38.25, 24.5, 37.5),
             folPos: new Vector3(38.75, 40, 42),
-            scale: 0.4
+            scale: 0.4,
+            folScale: 0.5
           },
           {
             folType: 'fol8',
             centerPos: new Vector3(37, 45, 35),
             folPos: new Vector3(30, 60, 28),
-            scale: 0.3
+            scale: 0.3,
+            folScale: 1
           },
         ]
       ),
@@ -201,19 +213,22 @@ export class TreeBuilder {
             folType: 'fol1',
             centerPos: new Vector3(51.25, 5.5, 32),
             folPos: new Vector3(55, 19, 22),
-            scale: 0.5
+            scale: 0.5,
+            folScale: 1
           },
           {
             folType: 'fol2',
             centerPos: new Vector3(51.75, 25, 34.5),
             folPos: new Vector3(60, 40, 42),
-            scale: 0.4
+            scale: 0.4,
+            folScale: 0.5
           },
           {
             folType: 'fol3',
             centerPos: new Vector3(49.5, 45, 33.75),
             folPos: new Vector3(41.75, 60, 38),
-            scale: 0.3
+            scale: 0.3,
+            folScale: 1
           },
         ]
       ),
@@ -242,19 +257,22 @@ export class TreeBuilder {
             folType: 'fol5',
             centerPos: new Vector3(52, 6, 13),
             folPos: new Vector3(42, 19, 5),
-            scale: 1
+            scale: 1,
+            folScale: 0.5
           },
           {
             folType: 'fol7',
             centerPos: new Vector3(52.5, 37, 14.25),
             folPos: new Vector3(45, 51, 14),
-            scale: 0.4
+            scale: 0.4,
+            folScale: 1
           },
           {
             folType: 'fol8',
             centerPos: new Vector3(53.75, 47, 13.5),
             folPos: new Vector3(60, 63, 10),
-            scale: 0.4
+            scale: 0.4,
+            folScale: 1
           },
         ]
       ),
@@ -283,19 +301,22 @@ export class TreeBuilder {
             folType: 'fol9',
             centerPos: new Vector3(68.75, 5, 11),
             folPos: new Vector3(73, 20, 6),
-            scale: 0.7
+            scale: 0.7,
+            folScale: 0.6
           },
           {
             folType: 'fol10',
             centerPos: new Vector3(66, 11, 12),
             folPos: new Vector3(60, 27, 17),
-            scale: 0.4
+            scale: 0.4,
+            folScale: 1
           },
           {
             folType: 'fol11',
             centerPos: new Vector3(68, 52, 11.5),
             folPos: new Vector3(75, 68, 13),
-            scale: 0.25
+            scale: 0.25,
+            folScale: 0.5
           },
         ]
       ),
@@ -324,19 +345,22 @@ export class TreeBuilder {
             folType: 'fol1',
             centerPos: new Vector3(67, 7, 32),
             folPos: new Vector3(59, 20, 42),
-            scale: 0.7
+            scale: 0.7,
+            folScale: 0.5
           },
           {
             folType: 'fol4',
-            centerPos: new Vector3(67.25, 20, 31.5),
-            folPos: new Vector3(73, 35, 22),
-            scale: 0.5
+            centerPos: new Vector3(67.25, 24, 31.5),
+            folPos: new Vector3(73, 39, 22),
+            scale: 0.5,
+            folScale: 0.7
           },
           {
             folType: 'fol8',
             centerPos: new Vector3(66.5, 25, 32.75),
             folPos: new Vector3(72, 40, 41),
-            scale: 0.4
+            scale: 0.4,
+            folScale: 0.7
           },
         ]
       )
