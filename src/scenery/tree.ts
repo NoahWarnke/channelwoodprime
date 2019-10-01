@@ -25,7 +25,7 @@ export class Tree {
     trunkName: string,
     transform: Transform,
     treehousePositions: {centerPos: Vector3, treehousePos: Vector3, scale: number}[],
-    foliagePositions: {folType: string, centerPos: Vector3, folPos: Vector3, scale: number}[]
+    foliagePositions: {folType: string, centerPos: Vector3, folPos: Vector3, scale: number, folScale: number}[]
   ) {
     
     let treeCenter = transform.position.clone();
@@ -41,7 +41,7 @@ export class Tree {
     
     for (var i = 0; i < foliagePositions.length; i++) {
       this.addBranch(foliagePositions[i].centerPos, foliagePositions[i].folPos.subtract(new Vector3(0, 0, 0)), foliagePositions[i].scale);
-      this.addFoliage(foliagePositions[i].folPos, foliagePositions[i].folType);
+      this.addFoliage(foliagePositions[i].folPos, foliagePositions[i].folType, foliagePositions[i].folScale);
     }
     
     engine.addEntity(tree);
@@ -83,9 +83,9 @@ export class Tree {
     upperTransf.lookAt(new Vector3(start.x * 2 - elbowPt.x, start.y * 2 - elbowPt.y, start.z * 2 - elbowPt.z)); // would be just elbowPt but the branch is backwards.
     upperTransf.scale.set(scale, scale, 1);
     
-    let lowerTransf = new Transform({position: elbowPt});
+    let lowerTransf = new Transform({position: end.clone().subtract(elbowPt).normalize().scale(0.5).add(elbowPt)});
     lowerTransf.lookAt(new Vector3(elbowPt.x * 2 - end.x, elbowPt.y * 2 - end.y, elbowPt.z * 2 - end.z)); // would be just end but the branch is backwards.
-    lowerTransf.scale.set(scale, scale, 1);
+    lowerTransf.scale.set(scale, scale, 0.93);
     
     // entities
     let upper = new Entity();
@@ -99,12 +99,12 @@ export class Tree {
     engine.addEntity(fore);
   }
   
-  public addFoliage(pos: Vector3, shape: string) {
+  public addFoliage(pos: Vector3, shape: string, scale: number) {
     let foliage = new Entity();
     foliage.addComponent(Tree.shapes[shape])
     foliage.addComponent(new Transform({
       position: pos,
-      scale: new Vector3(0.5, 0.5, 0.5)
+      scale: new Vector3(-scale, scale, scale)
     }));
     engine.addEntity(foliage);
   }
