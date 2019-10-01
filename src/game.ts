@@ -57,7 +57,7 @@ let ui = new UI([
   houses.C.getPos(),
   houses.D0.getPos(),
   houses.F.getPos(),
-  houses.H.getPos(),
+  houses.G.getPos(),
   houses.J.getPos(),
   houses.M.getPos(),
   houses.N.getPos()
