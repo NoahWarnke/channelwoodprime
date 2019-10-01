@@ -83,9 +83,9 @@ export class Tree {
     upperTransf.lookAt(new Vector3(start.x * 2 - elbowPt.x, start.y * 2 - elbowPt.y, start.z * 2 - elbowPt.z)); // would be just elbowPt but the branch is backwards.
     upperTransf.scale.set(scale, scale, 1);
     
-    let lowerTransf = new Transform({position: elbowPt});
+    let lowerTransf = new Transform({position: end.clone().subtract(elbowPt).normalize().scale(0.5).add(elbowPt)});
     lowerTransf.lookAt(new Vector3(elbowPt.x * 2 - end.x, elbowPt.y * 2 - end.y, elbowPt.z * 2 - end.z)); // would be just end but the branch is backwards.
-    lowerTransf.scale.set(scale, scale, 1);
+    lowerTransf.scale.set(scale, scale, 0.93);
     
     // entities
     let upper = new Entity();
