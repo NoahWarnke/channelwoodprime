@@ -2,6 +2,8 @@
 export class Bridge {
   
   public shapes = {
+    withoutPipe: new GLTFShape('models/bridges/bridgeNoPipeOrRailings.glb'),
+    withPipe: new GLTFShape('models/bridges/bridge_no_railings.glb'),
     posts: new GLTFShape('models/bridges/bridgeEndModule.glb'),
     gate: new GLTFShape('models/bridges/gate.glb')
   };
@@ -9,9 +11,9 @@ export class Bridge {
   public module0: Entity;
   public module1: Entity;
   
-  constructor(startPoint: Vector3, endPoint: Vector3, module0: string, module1: string) {
+  constructor(startPoint: Vector3, endPoint: Vector3, module0: string, module1: string, type: string) {
     
-    let model = new GLTFShape('models/bridges/bridge_no_railings.glb');
+    let model = this.shapes[type];
     
     let offset = endPoint.subtract(startPoint);
     let length = offset.length();

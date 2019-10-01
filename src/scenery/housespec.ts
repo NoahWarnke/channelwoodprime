@@ -11,6 +11,9 @@ export class HouseSpec {
   socket1?: number;
   frommodule0?: string;
   frommodule1?: string;
+  brType?: string;
+  br0Type?: string;
+  br1Type?: string;
   from0module0?: string;
   from0module1?: string;
   from1module0?: string;

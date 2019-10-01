@@ -27,6 +27,7 @@ export class Gate {
     this.entity = entity;
     
     this.entity.addComponent(new OnClick(() => {
+      log('clicked gate');
       let pos = this.entity.getComponent(Transform).position;
       let camPos = Camera.instance.position;
       let dist = camPos.subtract(pos).length();
@@ -47,6 +48,7 @@ export class Gate {
     
     this.closeClip = new AnimationState("closeGate");
     this.closeClip.looping = false;
+    this.closeClip.speed = 0.5
     animator.addClip(this.closeClip);
     
     // Sounds
@@ -89,7 +91,8 @@ export class Gate {
   }
   
   public click() {
-    
+    log ('gate clicked!');
+    log (this.pipe.pressure);
     // If gate is not powered, clicking does nothing.
     if (!this.pipe.pressure) {
       return;

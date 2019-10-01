@@ -20,6 +20,7 @@ export class HouseAndBridgeBuilder {
         alt: 15,
         frommodule0: 'posts',
         frommodule1: 'gate',
+        brType: 'withPipe',
         pipes: ['medl', 'none', 'none', 'shortr', 'valvel', 'full'],
         rails: ['gap', 'full', 'full', 'gap', 'gap', 'full'],
         type: 'plat'
@@ -31,6 +32,7 @@ export class HouseAndBridgeBuilder {
         alt: 18,
         frommodule0: 'posts',
         frommodule1: 'posts',
+        brType: 'withPipe',
         pipes: ['shortl', 'none', 'none', 'none', 'none', 'shortr'],
         rails: ['gap', 'full', 'full', 'full', 'full', 'gap'],
         type: 'house'
@@ -40,8 +42,9 @@ export class HouseAndBridgeBuilder {
         socket: 0,
         dist: 16,
         alt: 15,
-        frommodule0: 'posts',
-        frommodule1: 'gate',
+        frommodule0: 'gate',
+        frommodule1: 'posts',
+        brType: 'withoutPipe',
         pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
         rails: ['full', 'full', 'full', 'gap', 'full', 'full'],
         type: 'house'
@@ -51,8 +54,9 @@ export class HouseAndBridgeBuilder {
         socket: 5,
         dist: 14,
         alt: 23,
-        frommodule0: 'posts',
+        frommodule0: 'gate',
         frommodule1: 'posts',
+        brType: 'withPipe',
         pipes: ['shortr', 'full', 'valvel', 'full', 'medl', 'none'],
         rails: ['gap', 'full', 'gap', 'full', 'gap', 'full'],
         type: 'house'
@@ -62,8 +66,9 @@ export class HouseAndBridgeBuilder {
         socket: 4,
         dist: 18,
         alt: 30,
-        frommodule0: 'posts',
+        frommodule0: 'gate',
         frommodule1: 'posts',
+        brType: 'withPipe',
         pipes: ['shortr', 'shortl', 'none', 'none', 'none', 'none'],
         rails: ['gap', 'gap', 'full', 'full', 'full', 'full'],
         type: 'house'
@@ -75,7 +80,8 @@ export class HouseAndBridgeBuilder {
         alt: 23,
         frommodule0: 'posts',
         frommodule1: 'posts',
-        pipes: ['full', 'full', 'full', 'shortl','shortr', 'full'],
+        brType: 'withPipe',
+        pipes: ['full', 'full', 'full', 'shortl','shortr', 'valvel'],
         rails: ['full', 'full', 'full', 'gap', 'gap', 'full'],
         type: 'house'
       },
@@ -88,8 +94,10 @@ export class HouseAndBridgeBuilder {
         alt: 25,
         from0module0: 'posts',
         from0module1: 'posts',
+        br0Type: 'withPipe',
         from1module0: 'posts',
-        from1module1: 'posts',
+        from1module1: 'gate',
+        br1Type: 'withPipe',
         pipes: ['full', 'shortl', 'none', 'medr', 'full', 'valver'],
         rails: ['full', 'gap', 'full', 'gap', 'full', 'gap'],
         type: 'plat'
@@ -101,7 +109,8 @@ export class HouseAndBridgeBuilder {
         alt: 28,
         frommodule0: 'posts',
         frommodule1: 'posts',
-        pipes: ['medl', 'shortr', 'valvel', 'full', 'full', 'full'],
+        brType: 'withPipe',
+        pipes: ['medl', 'none', 'medr', 'full', 'full', 'full'],
         rails: ['gap', 'gap', 'gap', 'full', 'full', 'full'],
         type: 'house'
       },
@@ -111,7 +120,8 @@ export class HouseAndBridgeBuilder {
         dist: 18,
         alt: 30,
         frommodule0: 'posts',
-        frommodule1: 'posts',
+        frommodule1: 'gate',
+        brType: 'withoutPipe',
         pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
         rails: ['full', 'full', 'full', 'full', 'gap', 'full'],
         type: 'plat'
@@ -121,8 +131,9 @@ export class HouseAndBridgeBuilder {
         socket: 0,
         dist: 22,
         alt: 40,
-        frommodule0: 'posts',
+        frommodule0: 'gate',
         frommodule1: 'posts',
+        brType: 'withPipe',
         pipes: ['none', 'shortr', 'full', 'shortl', 'none', 'none'],
         rails: ['full', 'gap', 'full', 'gap', 'full', 'full'],
         type: 'house'
@@ -134,7 +145,8 @@ export class HouseAndBridgeBuilder {
         alt: 45,
         frommodule0: 'posts',
         frommodule1: 'posts',
-        pipes: ['full', 'medl', 'shortr', 'full', 'valvel', 'full'],
+        brType: 'withPipe',
+        pipes: ['full', 'medl', 'shortr', 'full', 'valver', 'full'],
         rails: ['full', 'gap', 'gap', 'full', 'gap', 'gap'],
         type: 'plat'
       },
@@ -144,7 +156,8 @@ export class HouseAndBridgeBuilder {
         dist: 12.5,
         alt: 44,
         frommodule0: 'posts',
-        frommodule1: 'posts',
+        frommodule1: 'gate',
+        brType: 'withPipe',
         pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
         rails: ['full', 'full', 'gap', 'full', 'full', 'full'],
         type: 'house'
@@ -156,6 +169,7 @@ export class HouseAndBridgeBuilder {
         alt: 50,
         frommodule0: 'posts',
         frommodule1: 'posts',
+        brType: 'withPipe',
         pipes: ['none', 'none', 'shortr', 'full', 'shortl', 'none'],
         rails: ['full', 'full', 'gap', 'full', 'gap', 'full'],
         type: 'house'
@@ -165,9 +179,10 @@ export class HouseAndBridgeBuilder {
         socket: 2,
         dist: 25,
         alt: 55,
-        frommodule0: 'posts',
+        frommodule0: 'gate',
         frommodule1: 'posts',
-        pipes: ['medl', 'none', 'none', 'none', 'none', 'medr'],
+        brType: 'withoutPipe',
+        pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
         rails: ['gap', 'full', 'full', 'full', 'full', 'gap'],
         type: 'house'
       },
@@ -179,11 +194,13 @@ export class HouseAndBridgeBuilder {
         socket1: 2,
         alt: 53,
         from0module0: 'posts',
-        from0module1: 'posts',
+        from0module1: 'gate',
+        br0Type: 'withoutPipe',
         from1module0: 'posts',
         from1module1: 'posts',
-        pipes: ['none', 'none', 'none', 'medr', 'valver', 'shortl'],
-        rails: ['full', 'full', 'full', 'gap', 'gap', 'gap'],
+        br1Type: 'withPipe',
+        pipes: ['full', 'full', 'full', 'shortl', 'shortr', 'valvel'],
+        rails: ['full', 'full', 'full', 'gap', 'gap', 'full'], // last full = blocking bridge!
         type: 'plat'
       },
       'N': {
@@ -191,8 +208,9 @@ export class HouseAndBridgeBuilder {
         socket: 4,
         dist: 28,
         alt: 70,
-        frommodule0: 'posts',
+        frommodule0: 'gate',
         frommodule1: 'posts',
+        brType: 'withoutPipe',
         pipes: ['none', 'none', 'none', 'none', 'none', 'none'],
         rails: ['full', 'gap', 'full', 'full', 'full', 'full'],
         type: 'house'
@@ -223,7 +241,8 @@ export class HouseAndBridgeBuilder {
           houseSpec.ground,
           houses[houseKey].getSocketPos((houseSpec.socket + 3) % 6),
           houseSpec.frommodule0,
-          houseSpec.frommodule1
+          houseSpec.frommodule1,
+          houseSpec.brType
         );
         houses[houseKey].incomingBridges['ground'] = bridge;
       }
@@ -245,13 +264,15 @@ export class HouseAndBridgeBuilder {
           houses[houseSpec.from0].getSocketPos(houseSpec.socket0),
           houses[houseKey] .getSocketPos((houseSpec.socket0 + 3) % 6),
           houseSpec.from0module0,
-          houseSpec.from0module1
+          houseSpec.from0module1,
+          houseSpec.br0Type
         );
         let bridge1 = new Bridge(
           houses[houseSpec.from1].getSocketPos(houseSpec.socket1),
           houses[houseKey].getSocketPos((houseSpec.socket1 + 3) % 6),
           houseSpec.from1module0,
-          houseSpec.from1module1
+          houseSpec.from1module1,
+          houseSpec.br1Type
         );
         
         houses[houseKey].incomingBridges[houseSpec.from0] = bridge0;
@@ -277,7 +298,8 @@ export class HouseAndBridgeBuilder {
           houses[houseSpec.from].getSocketPos(houseSpec.socket),
           houses[houseKey].getSocketPos((houseSpec.socket + 3) % 6),
           houseSpec.frommodule0,
-          houseSpec.frommodule1
+          houseSpec.frommodule1,
+          houseSpec.brType
         );
         houses[houseKey].incomingBridges[houseSpec.from] = bridge;
         houses[houseSpec.from].outgoingBridges[houseKey] = bridge;

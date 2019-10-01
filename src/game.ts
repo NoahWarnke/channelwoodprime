@@ -23,7 +23,7 @@ let puzzleBuilder = new PuzzleBuilder(houses, windmill.valve);
 puzzleBuilder.build();
 
 // Create our trees!
-
+/*
 let treeBuilder = new TreeBuilder();
 treeBuilder.build(houses);
 
