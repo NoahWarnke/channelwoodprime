@@ -18,4 +18,5 @@
 ## FIXES
 
 - Tidied up gate UVs
-- 
+- Fixed strange normals issue with foliage
+- Reduce file sizes of models 
