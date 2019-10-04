@@ -15,8 +15,9 @@
 - _night-ambience.mp3_ (https://freesound.org/people/brunoboselli/sounds/459675/)
 - _windmill-loop.ogg_ (https://freesound.org/people/FonotecadeCanarias/sounds/210936/)
 
-## FIXES
+## Updates
 
 - Tidied up gate UVs
 - Fixed strange normals issue with foliage
 - Reduce file sizes of models 
+- Removed unused audio
