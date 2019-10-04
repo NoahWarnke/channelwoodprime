@@ -3,7 +3,7 @@ export class Bridge {
   
   public shapes = {
     withoutPipe: new GLTFShape('models/bridges/bridgeNoPipeOrRailings.glb'),
-    withPipe: new GLTFShape('models/bridges/bridge_no_railings.glb'),
+    withPipe: new GLTFShape('models/bridges/bridgeNoRailings.glb'),
     posts: new GLTFShape('models/bridges/bridgeEndModule.glb'),
     gate: new GLTFShape('models/bridges/gate.glb')
   };
