@@ -34,7 +34,7 @@ export default {
     },
     //3D MODEL
     model: {
-        journalPageModel: new GLTFShape("models/journalPage/journalPage.gltf")
+        journalPageModel: new GLTFShape("models/journalPage/journalPage.glb")
     },
     //AUDIO
     audio: [
