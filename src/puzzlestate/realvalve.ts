@@ -36,7 +36,7 @@ export class RealValve {
     }
     
     // Sounds
-    this.audioSource = new AudioSource(new AudioClip('sounds/handle-squeak.mp3'));
+    this.audioSource = new AudioSource(new AudioClip('sounds/handleSqueak.mp3'));
     this.entity.addComponent(this.audioSource);
     this.audioSource.volume = 4;
     this.audioSource.loop = false;
