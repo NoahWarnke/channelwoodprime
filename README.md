@@ -1,16 +1,13 @@
 ## Acknowledgements
 
-- _gate-latch.mp3_ (https://freesound.org/people/mhtaylor67/sounds/126041/)
-- _gate-opening.mp3_ (https://freesound.org/people/jorickhoofd/sounds/160048/)
-- _handle-squeak.mp3_ (https://freesound.org/people/lolamadeus/sounds/217174/)
-- _creek-a.mp3_ (https://freesound.org/people/Bini_trns/sounds/393998/)
-- _creek-b.mp3_ (https://freesound.org/people/Bini_trns/sounds/393998/)
-- _creek-c.mp3_ (https://freesound.org/people/Suz_Soundcreations/sounds/180543/)
-- _energy-a.mp3_ (https://freesound.org/people/Sclolex/sounds/260999/)
-- _energy-b.mp3_ (https://freesound.org/people/Sclolex/sounds/260999/)
-- _energy-c.mp3_ (https://freesound.org/people/be-steele/sounds/136306/)
-- _energy-d.mp3_ (https://freesound.org/people/be-steele/sounds/136306/)
-- _water-stream-loop.mp3_ (https://freesound.org/people/kwahmah_02/sounds/329060/)
-- _day-ambience.mp3_ (https://freesound.org/people/hz37/sounds/372612/)
-- _night-ambience.mp3_ (https://freesound.org/people/brunoboselli/sounds/459675/)
-- _windmill-loop.ogg_ (https://freesound.org/people/FonotecadeCanarias/sounds/210936/)
+- _gateOpening.mp3_ (https://freesound.org/people/jorickhoofd/sounds/160048/)
+- _handleSqueak.mp3_ (https://freesound.org/people/lolamadeus/sounds/217174/)
+- _dayAmbience.mp3_ (https://freesound.org/people/hz37/sounds/372612/)
+- _windmillLoop.mp3_ (https://freesound.org/people/FonotecadeCanarias/sounds/210936/)
+
+## Updates
+
+- Tidied up gate UVs
+- Fixed strange normals issue with foliage
+- Reduce file sizes of models 
+- Removed unused audio

@@ -52,7 +52,7 @@ export class Gate {
     animator.addClip(this.closeClip);
     
     // Sounds
-    this.audioSource = new AudioSource(new AudioClip('sounds/gate-opening.mp3'));
+    this.audioSource = new AudioSource(new AudioClip('sounds/gateOpening.mp3'));
     this.entity.addComponent(this.audioSource);
     this.audioSource.volume = 4;
     this.audioSource.loop = false;

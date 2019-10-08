@@ -4,14 +4,14 @@ import {Bridge} from 'bridge';
 export class Treehouse {
   
   static pipeShapes: {[index: string]: GLTFShape} = {
-    full: new GLTFShape('models/pipes/pipe_edge_straight.glb'),       // full pipe
-    gap: new GLTFShape('models/pipes/pipe_edge_gap.glb'),             // gap with 1/4 both sides
-    shortl: new GLTFShape('models/pipes/pipe_edge_short_l.glb'),      // just 1/4 left pipe
-    shortr: new GLTFShape('models/pipes/pipe_edge_short_r.glb'),      // just 1/4 right pipe
-    medl: new GLTFShape('models/pipes/pipe_edge_med_l.glb'),          // just 3/4 left pipe
-    medr: new GLTFShape('models/pipes/pipe_edge_med_r.glb'),          // just 3/4 right pipe
-    valver: new GLTFShape('models/pipes/pipe_edge_w_valve_a.glb'),// full pipe with left valve
-    valvel: new GLTFShape('models/pipes/pipe_edge_w_valve_b.glb'),// full pipe with right valve
+    full: new GLTFShape('models/pipes/pipeEdgeStraight.glb'),       // full pipe
+    gap: new GLTFShape('models/pipes/pipeEdgeGap.glb'),             // gap with 1/4 both sides
+    shortl: new GLTFShape('models/pipes/pipeEdgeShortL.glb'),      // just 1/4 left pipe
+    shortr: new GLTFShape('models/pipes/pipeEdgeShortR.glb'),      // just 1/4 right pipe
+    medl: new GLTFShape('models/pipes/pipeEdgeMedL.glb'),          // just 3/4 left pipe
+    medr: new GLTFShape('models/pipes/pipeEdgeMedR.glb'),          // just 3/4 right pipe
+    valver: new GLTFShape('models/pipes/pipeEdgeValveA.glb'),// full pipe with left valve
+    valvel: new GLTFShape('models/pipes/pipeEdgeValveB.glb'),// full pipe with right valve
   };
   
   static railShapes: {[index: string] : GLTFShape} = {

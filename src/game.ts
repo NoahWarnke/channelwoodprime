@@ -110,7 +110,7 @@ eyeballs.addComponent(new Transform({
 // Eyes animation
 let animator = new Animator()
 eyeballs.addComponent(animator)
-const eyesOpening = new AnimationState("eyesOpening")
+const eyesOpening = new AnimationState("eyesOpen")
 eyesOpening.looping = true
 eyesOpening.reset();
 
