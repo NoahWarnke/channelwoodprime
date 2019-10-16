@@ -138,9 +138,6 @@ class HintUI extends SingleUI {
         this.uiImage.visible = false
         //this.parent.visible = false
     }
-    update(dt: number) {
-
-    }
 }
 
 //-----------------CREATE UI-------------------//
