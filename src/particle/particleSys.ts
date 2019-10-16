@@ -252,7 +252,7 @@ material1.albedoColor = finalColor1
 material1.emissiveColor = finalColor1
 //material1.albedoColor = Color3.Lerp(initialColor1, finalColor1, 1 / 5)
 //material1.emissiveColor = Color3.Lerp(initialColor1, finalColor1, 1 / 11)
-material1.emissiveIntensity = 10
+material1.emissiveIntensity = 15
 
 //const initialColor2 = new Color3(1, 1, 0)
 const finalColor2 = new Color3(1, 1, 0)
@@ -261,7 +261,7 @@ material2.albedoColor = finalColor2
 material2.emissiveColor = finalColor2
 //material2.albedoColor = Color3.Lerp(initialColor2, finalColor2, 1 / 5)
 //material2.emissiveColor = Color3.Lerp(initialColor2, finalColor2, 1 / 11)
-material2.emissiveIntensity = 10
+material2.emissiveIntensity = 15
 
 export class ParticleScenes {
     constructor() {

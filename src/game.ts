@@ -4,7 +4,7 @@ import {HouseAndBridgeBuilder} from 'scenery/houseandbridgebuilder';
 import {PuzzleBuilder} from 'puzzlestate/puzzlebuilder';
 import {HumanoidTree} from 'scenery/humanoidtree';
 import {Windmill} from 'scenery/windmill'
-import {UI} from 'moduleUI/ui';
+import {UI, HintUI} from 'moduleUI/ui';
 import {ParticleScenes} from 'particle/particleSys';
 import {AudioAmbient, AudioWindmill} from 'sceneaudio/sceneAudio';
 
@@ -67,8 +67,11 @@ let ui = new UI([
 const pS = new ParticleScenes();
 
 //Add audio for day ambient and windmill
-let audioWindmill = new AudioWindmill()
-let audioAmbient = new AudioAmbient()
+let audioWindmill = new AudioWindmill();
+let audioAmbient = new AudioAmbient();
+
+//Add valve and gate UI when crosshair pointing at gate or valve
+let hintUI = new HintUI();
 
 // Instance the input object
 /*
