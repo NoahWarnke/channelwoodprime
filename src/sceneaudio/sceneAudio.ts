@@ -19,11 +19,13 @@ export class AudioAmbient {
         engine.addSystem(this)
     }
     update(dt: number) {
-        this.entity.getComponent(Transform).position.copyFrom(camera.position)
-        //audio adjustment
-        this.entity.getComponent(Transform).position.x -= 8
-        this.entity.getComponent(Transform).position.y -= 3
-        this.entity.getComponent(Transform).position.z -= 2
+        if (inBound(camera.position)) {
+            this.entity.getComponent(Transform).position.copyFrom(camera.position)
+            //audio adjustment
+            this.entity.getComponent(Transform).position.x -= 8
+            this.entity.getComponent(Transform).position.y -= 3
+            this.entity.getComponent(Transform).position.z -= 2
+        }
     }
 }
 
@@ -47,4 +49,11 @@ export class AudioWindmill {
         this.entity.getComponent(Transform).position.y -= 3
         this.entity.getComponent(Transform).position.z -= 2
     }
+}
+
+function inBound(vect: Vector3) {
+    if (vect.x > 0 && vect.x < 90
+        && vect.z > 0 && vect.z < 48)
+        return true
+    return false
 }

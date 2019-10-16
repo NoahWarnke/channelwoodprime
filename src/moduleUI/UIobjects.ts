@@ -109,6 +109,40 @@ class PageUI extends SingleUI {
     }
 }
 
+class HintUI extends SingleUI {
+    constructor(
+        parent: any,
+        textureImg: Texture,
+        sourceLeft: number,
+        sourceTop: number,
+        sourceWidth: number,
+        sourceHeight: number,
+        width: number,
+        height: number,
+        positionX: number,
+        positionY: number
+    ) {
+        super(parent, textureImg, sourceLeft, sourceTop, sourceWidth, sourceHeight,
+            width, height, positionX, positionY)
+
+        this.uiImage.hAlign = 'center'
+        this.uiImage.vAlign = 'center'
+        this.uiImage.isPointerBlocker = false
+        this.uiImage.visible = true
+    }
+    show() {
+        this.uiImage.visible = true
+        //this.parent.visible = true
+    }
+    hide() {
+        this.uiImage.visible = false
+        //this.parent.visible = false
+    }
+    update(dt: number) {
+
+    }
+}
+
 //-----------------CREATE UI-------------------//
 
 export const canvas = new UICanvas()
@@ -124,6 +158,9 @@ export const rectIcon = new UIContainerRect(canvas) //for icon in the bottom
 createRect(rectIcon, 1)
 rectIcon.visible = true
 
+export const rectHint = new UIContainerRect(canvas) //for hint gate and valve
+createRect2(rectHint, 1)
+rectHint.visible = true
 
 //create collection of UIImage individual page
 const pages: PageUI[] = []
@@ -174,6 +211,15 @@ let journalSummaryBtn = new SingleUI(rectIcon, UIresources.texture.journalBackgr
 //audioBtnOff.uiImage.visible = false
 //audioBtnOn.uiImage.visible = false
 
+//create hint UI
+let valveHint = new HintUI(rectHint, UIresources.texture.journalBackground,
+    90, 474, 50, 50, 96, 96, -2, 28)
+let gateHint = new HintUI(rectHint, UIresources.texture.journalBackground,
+   140, 474, 50, 50, 96, 110, 5, 28)
+
+valveHint.hide()
+gateHint.hide()
+
 export default {
     UIObjects: {
         journalPage: journalPage,
@@ -182,6 +228,10 @@ export default {
             journalSummaryBtn: journalSummaryBtn,
             //audioBtnOff: audioBtnOff,
             //audioBtnOn: audioBtnOn
+        },
+        hint: {
+            valveHint: valveHint,
+            gateHint: gateHint
         }
     }
 }
@@ -194,5 +244,15 @@ function createRect(rect, opac){
     rect.positionX = 0
     rect.opacity = opac
     rect.visible = false
+    return rect
+}
+function createRect2(rect: UIContainerRect, opac) {
+    rect.height = '100%'
+    rect.width = '100%'
+    rect.hAlign = 'center'
+    rect.vAlign = 'center'
+    rect.opacity = opac
+    rect.visible = false
+    rect.isPointerBlocker = false
     return rect
 }

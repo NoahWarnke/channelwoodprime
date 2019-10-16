@@ -1,5 +1,6 @@
 import { journalPage } from "./pageModel"
 import { gameUI } from "./UIgroup"
+import { GateOrValveHit } from "./objraydetection"
 
 export class UI {
     constructor(positions: Vector3[]) {
@@ -13,4 +14,10 @@ export class UI {
         return gameUI.getAudioState()
     }
     */
+}
+
+export class HintUI {
+    constructor() {
+        engine.addSystem(new GateOrValveHit())
+    }
 }
