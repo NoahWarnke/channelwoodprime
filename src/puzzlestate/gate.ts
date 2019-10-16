@@ -13,6 +13,7 @@ export class Gate {
   public closeClip: AnimationState;
   
   public audioSource: AudioSource;
+  public rattleAudioSource: AudioSource;
   
   constructor(entity: Entity, pipe: PipeNode, graph: Graph) {
     
@@ -57,6 +58,14 @@ export class Gate {
     this.audioSource.volume = 4;
     this.audioSource.loop = false;
     this.audioSource.playing = false;
+    
+    let rattleEntity = new Entity();
+    this.rattleAudioSource = new  AudioSource(new AudioClip('sounds/doorRattle.mp3'));
+    this.rattleAudioSource.volume = 4;
+    this.rattleAudioSource.loop = false;
+    this.rattleAudioSource.playing = false;
+    rattleEntity.addComponent(this.rattleAudioSource);
+    rattleEntity.setParent(this.entity);
 
   }
   
@@ -90,11 +99,16 @@ export class Gate {
     this.audioSource.playOnce();
   }
   
+  public playRattleSound() {
+    this.rattleAudioSource.playOnce();
+  }
+  
   public click() {
     log ('gate clicked!');
     log (this.pipe.pressure);
-    // If gate is not powered, clicking does nothing.
+    // If gate is not powered, clicking does nothing except rattle.
     if (!this.pipe.pressure) {
+      this.playRattleSound();
       return;
     }
     if (this.up) {
