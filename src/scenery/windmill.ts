@@ -30,7 +30,8 @@ export class Windmill {
       [
         new Vector3(12.687, 0.05, 7.580),
         new Vector3(12.55, 0.886, 8.268),
-        new Vector3(11.683, 3.634, 9.949),
+        new Vector3(12.45, 1.932, 8.6),
+        new Vector3(12, 3.6, 9.6),
         new Vector3(11.462, 4.06, 10.52),
         new Vector3(11, 4.5, 12)
       ],
