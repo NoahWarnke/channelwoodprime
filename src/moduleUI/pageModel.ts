@@ -16,24 +16,27 @@ class JournalPageModel {
         this.entity.addComponent(new Transform({
             position: Vector3.Zero(),
             scale: new Vector3(0.5, 0.5, 0.5)
-        }))
-        this.entity.addComponent(
-            new OnPointerDown(e => {
-                let squareDis = camera.position.subtract(this.entity.getComponent(Transform).position).lengthSquared()
-                //log(squareDis)
-                if (squareDis < 16) {
-                    //log("JOURNAL PAGE ", this.pageNumber, " UNLOCKED")
-                    gameUI.unlockPage(this.pageNumber)
+        }));
+        log('adding OnClick component to page entity...');
+        this.entity.addComponent(new OnClick(e => {
+          log('pageClick for page ' + this.pageNumber);
+              
+          let squareDis = camera.position.subtract(this.entity.getComponent(Transform).position).lengthSquared()
+          //log(squareDis)
+          if (squareDis < 16) {
+              //log("JOURNAL PAGE ", this.pageNumber, " UNLOCKED")
+              gameUI.unlockPage(this.pageNumber)
 
-                    engine.removeEntity(this.entity)
-                    this.removeParticleSys()
-                }
-            })
-        )
+              engine.removeEntity(this.entity)
+              this.removeParticleSys()
+          }
+                
+        }));
     }
     addToScene(position: Vector3) {
         this.position = position
         this.entity.getComponent(Transform).position = position
+        this.entity.getComponent(Transform).position.y += 0.05;
         engine.addEntity(this.entity)
     }
     addParticleSys() {

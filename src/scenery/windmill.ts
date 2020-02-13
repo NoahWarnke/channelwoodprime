@@ -13,7 +13,7 @@ export class Windmill {
       rotation: Quaternion.Euler(0, 215, 0),
       scale: new Vector3(0.7, 0.7, 0.7)
     }));
-
+    
     let animator = new Animator();
     windmill.addComponent(animator);
 
@@ -57,6 +57,7 @@ export class Windmill {
       position: new Vector3(12.8, 1.38, 16.85),
       rotation: Quaternion.Euler(0, -70, 0)
     }));
+    this.valve.addComponent(new Animator()); // To stop accidental playing of anims before real Animator loads; will be replaced if needed.
     engine.addEntity(this.valve);
 
   }

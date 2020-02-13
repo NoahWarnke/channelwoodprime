@@ -19,21 +19,29 @@ export class RealValve {
     }));
     
     let animator = new Animator();
-    this.entity.addComponent(animator);
+    this.entity.addComponentOrReplace(animator);
     
     this.leftTurn = new AnimationState("rightTurn");
     this.leftTurn.looping = false;
+    this.leftTurn.playing = false;
     animator.addClip(this.leftTurn);
     
     
     this.rightTurn = new AnimationState("leftTurn");
     this.rightTurn.looping = false;
+    this.rightTurn.playing = false;
     animator.addClip(this.rightTurn);
     
     // Default to left, so play right if needed.
     if (this.valve.state === 'right') {
       this.rightTurn.play();
     }
+    //else {
+    //  this.leftTurn.play();
+    //}
+    
+    
+    
     
     // Sounds
     this.audioSource = new AudioSource(new AudioClip('sounds/handleSqueak.mp3'));

@@ -41,7 +41,7 @@ export class Gate {
     
     // Animations
     let animator = new Animator();
-    this.entity.addComponent(animator);
+    this.entity.addComponentOrReplace(animator);
 
     this.openClip = new AnimationState("openGate");
     this.openClip.looping = false;

@@ -67,6 +67,7 @@ export class Treehouse {
       pipe.addComponent(new Transform({
         rotation: Quaternion.Euler(0, i * -60 + 90, 0)
       }));
+      pipe.addComponent(new Animator()); // To stop accidental playing of anims before real Animator loads; will be replaced if needed.
       pipe.setParent(root);
       
       // Save valves, since we need to do some stuff with them.
@@ -87,6 +88,7 @@ export class Treehouse {
       rail.addComponent(new Transform({
         rotation: Quaternion.Euler(0, i * -60 + 90, 0)
       }));
+      //rail.addComponent(new Animator()); // To stop accidental playing of anims before real Animator loads; will be replaced if needed.
       rail.setParent(root);
     }
     
