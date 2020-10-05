@@ -170,12 +170,12 @@ for (let i = 0; i < 10; i++) {
 const journalPage = {
     pages: pages,
     closeBtn: new SingleUI(rectPage, UIresources.texture.journalBackground,
-        48, 475, 48, 48, 80, 80, 350, -10)
+        49, 475, 48, 48, 80, 80, 350, -10)
 }
 
 //create background for journal
 const journalBackground = new SingleUI(rectJournal, UIresources.texture.journalBackground,
-    0, 0, 512, 475, 920, 550, 425, -5)
+    0, 0, 512, 473, 920, 550, 425, -5)
 
 //create thumbnail pages for journal
 let xOffset: number = 460
@@ -198,7 +198,7 @@ const JournalSummary = {
     background: journalBackground,
     journalThumbnail: journalThumbnail,
     closeBtn: new SingleUI(rectJournal, UIresources.texture.journalBackground,
-        48, 475, 48, 48, 80, 80, 350, -10)
+        49, 475, 48, 48, 80, 80, 350, -10)
 }
 
 let journalSummaryBtn = new SingleUI(rectIcon, UIresources.texture.journalBackground,
@@ -210,9 +210,9 @@ let journalSummaryBtn = new SingleUI(rectIcon, UIresources.texture.journalBackgr
 
 //create hint UI
 let valveHint = new HintUI(rectHint, UIresources.texture.journalBackground,
-    90, 474, 50, 50, 96, 96, -2, 28)
+    90, 474, 50, 50, 48, 48, -2, 32)
 let gateHint = new HintUI(rectHint, UIresources.texture.journalBackground,
-   140, 474, 50, 50, 96, 110, 5, 28)
+   140, 474, 50, 50, 48, 55, 3, 32)
 
 valveHint.hide()
 gateHint.hide()
